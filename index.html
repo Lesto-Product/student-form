@@ -1,45 +1,47 @@
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&display=swap');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   .form-root {
-    font-family: 'DM Sans', sans-serif;
-    color: var(--color-text-primary);
+    font-family: 'Mulish', sans-serif;
+    color: #1A1D2B;
     max-width: 680px;
     margin: 0 auto;
     padding: 2rem 1rem 3rem;
   }
 
   .brand {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    color: var(--color-text-tertiary);
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #2B3045;
     text-transform: uppercase;
     margin-bottom: 2.5rem;
   }
+  .brand-accent { color: #EC1C24; }
 
   .progress-bar {
-    height: 3px;
-    background: var(--color-border-tertiary);
+    height: 4px;
+    background: #E8E9ED;
     border-radius: 2px;
     margin-bottom: 2.5rem;
     position: relative;
   }
   .progress-fill {
     height: 100%;
-    background: #1D9E75;
+    background: #EC1C24;
     border-radius: 2px;
     transition: width 0.4s cubic-bezier(.4,0,.2,1);
   }
   .progress-label {
     font-size: 12px;
-    color: var(--color-text-tertiary);
+    color: #6B7084;
     margin-top: 6px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
   }
 
   .step { display: none; }
@@ -51,26 +53,27 @@
   }
 
   .step-eyebrow {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: #1D9E75;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #EC1C24;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
   }
 
   h1 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 26px;
-    font-weight: 700;
+    font-weight: 900;
     line-height: 1.2;
     margin-bottom: 0.5rem;
+    color: #2B3045;
   }
 
   .step-desc {
     font-size: 15px;
-    color: var(--color-text-secondary);
+    color: #6B7084;
     margin-bottom: 2rem;
     line-height: 1.6;
   }
@@ -79,14 +82,24 @@
   .field label {
     display: block;
     font-size: 13px;
-    font-weight: 500;
-    color: var(--color-text-secondary);
+    font-weight: 700;
+    color: #2B3045;
     margin-bottom: 6px;
   }
   .field input, .field textarea, .field select {
     width: 100%;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 15px;
+    padding: 10px 14px;
+    border: 1.5px solid #E8E9ED;
+    border-radius: 8px;
+    background: #fff;
+    color: #1A1D2B;
+    transition: border-color 0.15s;
+    outline: none;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    border-color: #EC1C24;
   }
   .field textarea { min-height: 90px; resize: vertical; }
 
@@ -100,55 +113,70 @@
   }
 
   .skill-item {
-    border: 0.5px solid var(--color-border-tertiary);
-    border-radius: var(--border-radius-lg);
-    padding: 12px 14px;
-    background: var(--color-background-primary);
+    border: 1.5px solid #E8E9ED;
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: border-color 0.15s;
   }
+  .skill-item:hover { border-color: #d0d1d6; }
 
   .skill-item label {
     font-size: 13px;
-    font-weight: 500;
-    color: var(--color-text-primary);
+    font-weight: 700;
+    color: #2B3045;
     display: block;
     margin-bottom: 8px;
   }
 
   .star-row { display: flex; gap: 4px; }
   .star {
-    width: 22px; height: 22px;
+    width: 32px; height: 32px;
     cursor: pointer;
-    color: var(--color-border-secondary);
-    font-size: 18px;
+    color: #d0d1d6;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
     transition: color 0.15s;
     user-select: none;
+    border-radius: 4px;
   }
-  .star.lit { color: #EF9F27; }
+  .star:hover { background: #FEF2F2; }
+  .star.lit { color: #EC1C24; }
 
   .project-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
 
   .project-card {
-    border: 0.5px solid var(--color-border-tertiary);
-    border-radius: var(--border-radius-lg);
-    padding: 14px 16px;
-    background: var(--color-background-primary);
+    border: 1.5px solid #E8E9ED;
+    border-radius: 10px;
+    padding: 16px 18px;
+    background: #fff;
     cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
     position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border-left: 4px solid #E8E9ED;
   }
 
-  .project-card:hover { border-color: var(--color-border-secondary); }
+  .project-card:hover {
+    border-color: #d0d1d6;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border-left-color: #d0d1d6;
+  }
 
   .project-card.selected {
-    border-color: #1D9E75;
-    background: #E1F5EE;
+    border-color: #EC1C24;
+    border-left-color: #EC1C24;
+    background: #FEF2F2;
+    box-shadow: 0 4px 16px rgba(236,28,36,0.1);
   }
 
   .project-card input[type=checkbox] {
     position: absolute;
     top: 16px; right: 16px;
     width: 16px; height: 16px;
-    accent-color: #1D9E75;
+    accent-color: #EC1C24;
   }
 
   .card-tag {
@@ -164,35 +192,36 @@
 
   .tag-life { background: #E1F5EE; color: #0F6E56; }
   .tag-tech { background: #E6F1FB; color: #185FA5; }
-  .tag-company { background: #FAEEDA; color: #854F0B; }
+  .tag-company { background: #FEE8E8; color: #B91C1C; }
 
   .card-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 3px;
-    color: var(--color-text-primary);
+    color: #2B3045;
     padding-right: 24px;
   }
 
   .card-desc {
     font-size: 13px;
-    color: var(--color-text-secondary);
+    color: #6B7084;
     line-height: 1.5;
   }
 
-  .project-card.selected .card-desc { color: #0F6E56; }
+  .project-card.selected .card-title { color: #991B1B; }
+  .project-card.selected .card-desc { color: #B91C1C; }
 
   .section-label {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-weight: 800;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-text-tertiary);
+    color: #2B3045;
     margin: 1.5rem 0 8px;
     padding-bottom: 6px;
-    border-bottom: 0.5px solid var(--color-border-tertiary);
+    border-bottom: 2px solid #E8E9ED;
   }
 
   .btn-row {
@@ -203,39 +232,43 @@
   }
 
   .btn-primary {
-    background: #1D9E75;
+    background: #EC1C24;
     color: white;
     border: none;
-    border-radius: var(--border-radius-md);
-    padding: 10px 24px;
-    font-family: 'Syne', sans-serif;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-family: 'Mulish', sans-serif;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: 0.03em;
     cursor: pointer;
-    transition: background 0.15s, transform 0.1s;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    box-shadow: 0 2px 8px rgba(236,28,36,0.25);
   }
-  .btn-primary:hover { background: #0F6E56; }
+  .btn-primary:hover { background: #D11920; box-shadow: 0 4px 16px rgba(236,28,36,0.3); }
   .btn-primary:active { transform: scale(0.98); }
 
   .btn-back {
     background: transparent;
-    color: var(--color-text-secondary);
-    border: 0.5px solid var(--color-border-secondary);
-    border-radius: var(--border-radius-md);
+    color: #6B7084;
+    border: 1.5px solid #E8E9ED;
+    border-radius: 8px;
     padding: 10px 20px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 14px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.15s;
+    transition: background 0.15s, border-color 0.15s;
   }
-  .btn-back:hover { background: var(--color-background-secondary); }
+  .btn-back:hover { background: #F4F5F7; border-color: #d0d1d6; }
 
-  .required { color: #D85A30; }
+  .required { color: #EC1C24; }
 
   .summary-card {
-    border: 0.5px solid var(--color-border-tertiary);
-    border-radius: var(--border-radius-lg);
-    background: var(--color-background-secondary);
+    border: 1.5px solid #E8E9ED;
+    border-radius: 10px;
+    border-left: 4px solid #EC1C24;
+    background: #F4F5F7;
     padding: 1.25rem;
     margin-bottom: 1rem;
     font-size: 14px;
@@ -243,34 +276,35 @@
   }
 
   .summary-card h3 {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-size: 13px;
-    font-weight: 700;
-    color: var(--color-text-secondary);
-    letter-spacing: 0.06em;
+    font-weight: 800;
+    color: #2B3045;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 8px;
   }
 
   .copy-btn {
     margin-top: 1.5rem;
-    background: var(--color-background-secondary);
-    border: 0.5px solid var(--color-border-secondary);
-    border-radius: var(--border-radius-md);
-    padding: 10px 20px;
-    font-family: 'DM Sans', sans-serif;
+    background: #2B3045;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-family: 'Mulish', sans-serif;
     font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
-    color: var(--color-text-primary);
+    color: #fff;
     transition: background 0.15s;
     width: 100%;
   }
-  .copy-btn:hover { background: var(--color-border-tertiary); }
+  .copy-btn:hover { background: #3C4461; }
 
   .done-mark {
     width: 48px; height: 48px;
     border-radius: 50%;
-    background: #E1F5EE;
+    background: #FEE8E8;
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 1rem;
   }
@@ -280,16 +314,18 @@
   .radio-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem; }
   .radio-option {
     display: flex; align-items: center; gap: 10px;
-    padding: 10px 14px;
-    border: 0.5px solid var(--color-border-tertiary);
-    border-radius: var(--border-radius-md);
+    padding: 12px 16px;
+    border: 1.5px solid #E8E9ED;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
-    transition: border-color 0.15s, background 0.15s;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    font-weight: 500;
   }
-  .radio-option:hover { border-color: var(--color-border-secondary); }
-  .radio-option input { accent-color: #1D9E75; }
-  .radio-option.checked { border-color: #1D9E75; background: #E1F5EE; color: #0F6E56; }
+  .radio-option:hover { border-color: #d0d1d6; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .radio-option input { accent-color: #EC1C24; }
+  .radio-option.checked { border-color: #EC1C24; background: #FEF2F2; color: #991B1B; font-weight: 700; }
+  .radio-option.checked label, .radio-option.checked { font-weight: 700; }
 
   @media (max-width: 480px) {
     .two-col { grid-template-columns: 1fr; }
@@ -298,7 +334,7 @@
 </style>
 
 <div class="form-root">
-  <div class="brand">Lesto &nbsp;×&nbsp; ППМГ Враца — Проектна инициатива 2026</div>
+  <div class="brand"><span class="brand-accent">Lesto</span> &nbsp;×&nbsp; ППМГ Враца — Проектна инициатива 2026</div>
 
   <div class="progress-bar">
     <div class="progress-fill" id="prog" style="width: 20%"></div>
@@ -430,8 +466,8 @@
   <div class="step" id="step-6">
     <div class="done-mark">
       <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="11" cy="11" r="10" stroke="#1D9E75" stroke-width="1.5"/>
-        <path d="M6.5 11.5L9.5 14.5L15.5 8.5" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="11" cy="11" r="10" stroke="#EC1C24" stroke-width="1.5"/>
+        <path d="M6.5 11.5L9.5 14.5L15.5 8.5" stroke="#EC1C24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
     <div class="step-eyebrow">Готово</div>
@@ -476,7 +512,7 @@ const categories = [
     tag: 'company',
     tagLabel: 'Фирмено ориентиран',
     title: 'Проект с Lesto',
-    desc: 'Работа с реални фирмени данни и инструменти — дизайни в SolidWorks, интеграции с ERP системата Infor, дигитализация на процеси. Реален бизнес опит.',
+    desc: 'Работа с реални фирмени данни и инструменти — от проследяване на производството до дигитализация на процеси. Реален бизнес опит с менторство от софтуерния екип на Lesto.',
   },
 ];
 
@@ -493,6 +529,12 @@ const specificProjects = [
   { cat: 'company', title: 'SolidWorks дизайн', desc: 'Проектиране на компонент или механизъм за реален продукт на Lesto.' },
   { cat: 'company', title: 'Infor ERP интеграция', desc: 'Малък инструмент или отчет, свързан с ERP данните на компанията.' },
   { cat: 'company', title: 'Дигитализация на Excel процес', desc: 'Превръщане на ръчен Excel процес в автоматизирано уеб решение.' },
+  { cat: 'company', title: 'Система за заемане на инструменти', desc: 'Уеб приложение, в което служители отбелязват кой какъв инструмент е взел и кога го е върнал.' },
+  { cat: 'company', title: 'Тракер на производствени поръчки', desc: 'Канбан дъска, в която поръчките се преместват през етапите — от лазер до експедиция.' },
+  { cat: 'company', title: 'Чеклист за обход на работна площадка', desc: 'Мобилна форма за инспекция на безопасността — проверка по точки, снимки и PDF отчет.' },
+  { cat: 'company', title: 'Вътрешна база знания', desc: 'Уики, в което ръководителите качват инструкции стъпка по стъпка с изображения, а операторите ги търсят.' },
+  { cat: 'company', title: 'Кутия за предложения с гласуване', desc: 'Служителите подават идеи за подобрения, колегите гласуват, а мениджърите отбелязват статуса.' },
+  { cat: 'company', title: 'Дневник за предаване на смяна', desc: 'Излизащата смяна записва какво се е случило, а влизащата потвърждава — с търсима история.' },
 ];
 
 const selectedCats = new Set();
