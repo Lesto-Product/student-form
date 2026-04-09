@@ -1,0 +1,664 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .form-root {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--color-text-primary);
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+  }
+
+  .brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--color-border-tertiary);
+    border-radius: 2px;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #1D9E75;
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  .progress-label {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-top: 6px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .step { display: none; }
+  .step.active { display: block; animation: fadeUp 0.3s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #1D9E75;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .field { margin-bottom: 1.25rem; }
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 6px;
+  }
+  .field input, .field textarea, .field select {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+  }
+  .field textarea { min-height: 90px; resize: vertical; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-item {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 12px 14px;
+    background: var(--color-background-primary);
+  }
+
+  .skill-item label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .star-row { display: flex; gap: 4px; }
+  .star {
+    width: 22px; height: 22px;
+    cursor: pointer;
+    color: var(--color-border-secondary);
+    font-size: 18px;
+    transition: color 0.15s;
+    user-select: none;
+  }
+  .star.lit { color: #EF9F27; }
+
+  .project-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+
+  .project-card {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 14px 16px;
+    background: var(--color-background-primary);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .project-card:hover { border-color: var(--color-border-secondary); }
+
+  .project-card.selected {
+    border-color: #1D9E75;
+    background: #E1F5EE;
+  }
+
+  .project-card input[type=checkbox] {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 16px; height: 16px;
+    accent-color: #1D9E75;
+  }
+
+  .card-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .tag-life { background: #E1F5EE; color: #0F6E56; }
+  .tag-tech { background: #E6F1FB; color: #185FA5; }
+  .tag-company { background: #FAEEDA; color: #854F0B; }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: var(--color-text-primary);
+    padding-right: 24px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .project-card.selected .card-desc { color: #0F6E56; }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin: 1.5rem 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 2rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: #1D9E75;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-md);
+    padding: 10px 24px;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .btn-primary:hover { background: #0F6E56; }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-back {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 10px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-back:hover { background: var(--color-background-secondary); }
+
+  .required { color: #D85A30; }
+
+  .summary-card {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    background: var(--color-background-secondary);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .summary-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .copy-btn {
+    margin-top: 1.5rem;
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 10px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    transition: background 0.15s;
+    width: 100%;
+  }
+  .copy-btn:hover { background: var(--color-border-tertiary); }
+
+  .done-mark {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: #E1F5EE;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .done-mark svg { width: 22px; height: 22px; }
+
+  .radio-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem; }
+  .radio-option {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px;
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-size: 14px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .radio-option:hover { border-color: var(--color-border-secondary); }
+  .radio-option input { accent-color: #1D9E75; }
+  .radio-option.checked { border-color: #1D9E75; background: #E1F5EE; color: #0F6E56; }
+
+  @media (max-width: 480px) {
+    .two-col { grid-template-columns: 1fr; }
+    .skill-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="form-root">
+  <div class="brand">Lesto &nbsp;×&nbsp; ППМГ Враца — Проектна инициатива 2026</div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="prog" style="width: 20%"></div>
+  </div>
+  <div class="progress-label" id="prog-label">Стъпка 1 от 5</div>
+
+  <!-- STEP 1: Identity -->
+  <div class="step active" id="step-1">
+    <div class="step-eyebrow">Добре дошли</div>
+    <h1>Кажи ни кой си</h1>
+    <p class="step-desc">Тази форма ни помага да разберем твоите интереси и умения, преди да разпределим проектите. Няма верни или грешни отговори.</p>
+
+    <div class="two-col">
+      <div class="field">
+        <label>Име и фамилия <span class="required">*</span></label>
+        <input type="text" id="name" placeholder="Иван Иванов" />
+      </div>
+      <div class="field">
+        <label>Клас <span class="required">*</span></label>
+        <input type="text" id="grade" placeholder="11А / 12Б ..." />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Отбор (ако вече знаеш)</label>
+      <input type="text" id="team" placeholder="напр. Отбор 3, или оставете празно" />
+    </div>
+
+    <div class="field">
+      <label>Какво планираш да учиш / работиш след гимназията? <span class="required">*</span></label>
+      <input type="text" id="future" placeholder="напр. Компютърни науки, Медицина, Не съм сигурен/а..." />
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="goTo(2)">Напред →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Skills -->
+  <div class="step" id="step-2">
+    <div class="step-eyebrow">Умения</div>
+    <h1>Какво умееш?</h1>
+    <p class="step-desc">Оцени уменията си — не се притеснявай да бъдеш честен/а. Нулевият опит е напълно добре.</p>
+
+    <div class="skill-grid" id="skill-grid"></div>
+
+    <div class="field">
+      <label>Имаш ли друго умение, което смяташ, че е важно за проекта?</label>
+      <input type="text" id="other-skill" placeholder="напр. видеомонтаж, чужд език, счетоводство..." />
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goTo(1)">← Назад</button>
+      <button class="btn-primary" onclick="goTo(3)">Напред →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Project Categories -->
+  <div class="step" id="step-3">
+    <div class="step-eyebrow">Типове проекти</div>
+    <h1>Кое те вълнува?</h1>
+    <p class="step-desc">Прочети описанията и избери до 2 категории, които те привличат най-много.</p>
+
+    <div class="project-cards" id="cat-cards"></div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goTo(2)">← Назад</button>
+      <button class="btn-primary" onclick="goTo(4)">Напред →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Specific projects -->
+  <div class="step" id="step-4">
+    <div class="step-eyebrow">Конкретни идеи</div>
+    <h1>Кой проект те вдъхновява?</h1>
+    <p class="step-desc">Маркирай всички проекти, с които би се радвал/а да работиш. Избери колкото искаш.</p>
+
+    <div id="specific-cards"></div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goTo(3)">← Назад</button>
+      <button class="btn-primary" onclick="goTo(5)">Напред →</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: Open input -->
+  <div class="step" id="step-5">
+    <div class="step-eyebrow">Твоят глас</div>
+    <h1>Последни въпроси</h1>
+    <p class="step-desc">Тук можеш да бъдеш напълно свободен/на в отговорите си.</p>
+
+    <div class="field">
+      <label>Имаш ли своя идея за проект, която не сме споменали?</label>
+      <textarea id="own-idea" placeholder="Опиши я накратко..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Как предпочиташ да работиш в екип?</label>
+      <div class="radio-group" id="teamstyle-group">
+        <label class="radio-option"><input type="radio" name="teamstyle" value="leader" /> Обичам да поемам инициативата</label>
+        <label class="radio-option"><input type="radio" name="teamstyle" value="executor" /> Предпочитам да изпълнявам конкретни задачи</label>
+        <label class="radio-option"><input type="radio" name="teamstyle" value="creative" /> Силата ми е в идеите и дизайна</label>
+        <label class="radio-option"><input type="radio" name="teamstyle" value="flexible" /> Адаптирам се според нуждата</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Какво е най-важното за теб при работата по проекта?</label>
+      <div class="radio-group" id="priority-group">
+        <label class="radio-option"><input type="radio" name="priority" value="learn" /> Да науча нещо ново</label>
+        <label class="radio-option"><input type="radio" name="priority" value="useful" /> Крайният продукт да е реално полезен</label>
+        <label class="radio-option"><input type="radio" name="priority" value="fun" /> Да се забавлявам с отбора</label>
+        <label class="radio-option"><input type="radio" name="priority" value="portfolio" /> Да имам какво да покажа за университет / работа</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Нещо друго, което искаш да ни кажеш?</label>
+      <textarea id="extra" placeholder="Всичко, което смяташ за важно..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goTo(4)">← Назад</button>
+      <button class="btn-primary" onclick="finish()">Завърши ✓</button>
+    </div>
+  </div>
+
+  <!-- STEP 6: Summary -->
+  <div class="step" id="step-6">
+    <div class="done-mark">
+      <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="10" stroke="#1D9E75" stroke-width="1.5"/>
+        <path d="M6.5 11.5L9.5 14.5L15.5 8.5" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="step-eyebrow">Готово</div>
+    <h1>Благодарим ти!</h1>
+    <p class="step-desc">Твоите отговори ще ни помогнат да намерим най-подходящия проект за теб и отбора ти. Ето обобщение:</p>
+
+    <div id="summary-output"></div>
+
+    <button class="copy-btn" onclick="copyResults()">Копирай отговорите си (за да ги изпратиш)</button>
+  </div>
+</div>
+
+<script>
+const skills = [
+  { id: 'coding', label: 'Програмиране' },
+  { id: 'design', label: 'Дизайн / UI' },
+  { id: 'math', label: 'Математика / анализ' },
+  { id: 'research', label: 'Проучване / писане' },
+  { id: 'cad', label: '3D / CAD (SolidWorks)' },
+  { id: 'excel', label: 'Excel / таблици' },
+];
+
+const skillRatings = {};
+
+const categories = [
+  {
+    id: 'life',
+    tag: 'life',
+    tagLabel: 'Жизнени умения',
+    title: 'Приложения за живота',
+    desc: 'Интерактивни уеб инструменти по теми, важни за младите хора — финанси, здраве, кариера, взаимоотношения. Всеки отбор прави един; накрая всички 6 са ваши.',
+  },
+  {
+    id: 'tech',
+    tag: 'tech',
+    tagLabel: 'Инженерно / Софтуерно',
+    title: 'Технически проект',
+    desc: 'Софтуерен инструмент, алгоритъм, уебсайт или хардуерен прототип с реална употреба. По-свободна насока, по-голямо техническо предизвикателство.',
+  },
+  {
+    id: 'company',
+    tag: 'company',
+    tagLabel: 'Фирмено ориентиран',
+    title: 'Проект с Lesto',
+    desc: 'Работа с реални фирмени данни и инструменти — дизайни в SolidWorks, интеграции с ERP системата Infor, дигитализация на процеси. Реален бизнес опит.',
+  },
+];
+
+const specificProjects = [
+  { cat: 'life', title: 'Финансов наръчник', desc: 'Приложение за бюджетиране, спестявания и инвестиции за млади хора.' },
+  { cat: 'life', title: 'Хранене и спорт', desc: 'Интерактивен планировчик на хранене, калории и тренировки.' },
+  { cat: 'life', title: 'Наръчник за отношения', desc: 'Ресурс за комуникация, граници и емоционална интелигентност.' },
+  { cat: 'life', title: 'Кариерен компас', desc: 'Помощник за избор на специалност, CV и подготовка за интервю.' },
+  { cat: 'life', title: 'Наръчник за психично здраве', desc: 'Инструменти за управление на стрес, съня и продуктивността.' },
+  { cat: 'life', title: 'Правен наръчник за млади', desc: 'Основни права, трудов договор, наем, студентски кредити.' },
+  { cat: 'tech', title: 'Уеб приложение по твой избор', desc: 'Отборът предлага идеята и я реализира от нулата.' },
+  { cat: 'tech', title: 'Инструмент с AI интеграция', desc: 'Приложение, използващо езиков модел или машинно обучение.' },
+  { cat: 'tech', title: 'Мобилна / прогресивна уеб апликация', desc: 'Инструмент, достъпен и като мобилно приложение.' },
+  { cat: 'company', title: 'SolidWorks дизайн', desc: 'Проектиране на компонент или механизъм за реален продукт на Lesto.' },
+  { cat: 'company', title: 'Infor ERP интеграция', desc: 'Малък инструмент или отчет, свързан с ERP данните на компанията.' },
+  { cat: 'company', title: 'Дигитализация на Excel процес', desc: 'Превръщане на ръчен Excel процес в автоматизирано уеб решение.' },
+];
+
+const selectedCats = new Set();
+const selectedProjects = new Set();
+
+function buildSkillGrid() {
+  const grid = document.getElementById('skill-grid');
+  grid.innerHTML = skills.map(s => `
+    <div class="skill-item">
+      <label>${s.label}</label>
+      <div class="star-row" id="stars-${s.id}">
+        ${[1,2,3,4,5].map(n => `<span class="star" onclick="rate('${s.id}',${n})" data-v="${n}">★</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function rate(id, val) {
+  skillRatings[id] = val;
+  document.querySelectorAll(`#stars-${id} .star`).forEach(s => {
+    s.classList.toggle('lit', parseInt(s.dataset.v) <= val);
+  });
+}
+
+function buildCatCards() {
+  const el = document.getElementById('cat-cards');
+  el.innerHTML = categories.map(c => `
+    <div class="project-card${selectedCats.has(c.id)?' selected':''}" id="cat-${c.id}" onclick="toggleCat('${c.id}')">
+      <input type="checkbox" ${selectedCats.has(c.id)?'checked':''} onclick="event.stopPropagation();toggleCat('${c.id}')" />
+      <span class="card-tag tag-${c.tag}">${c.tagLabel}</span>
+      <div class="card-title">${c.title}</div>
+      <div class="card-desc">${c.desc}</div>
+    </div>
+  `).join('');
+}
+
+function toggleCat(id) {
+  if (selectedCats.has(id)) { selectedCats.delete(id); }
+  else { if (selectedCats.size >= 2) { alert('Моля, избери до 2 категории.'); return; } selectedCats.add(id); }
+  buildCatCards();
+}
+
+function buildSpecificCards() {
+  const el = document.getElementById('specific-cards');
+  const grouped = {};
+  specificProjects.forEach(p => { if (!grouped[p.cat]) grouped[p.cat] = []; grouped[p.cat].push(p); });
+  const catMap = { life: { label: 'Жизнени умения', tagClass: 'tag-life' }, tech: { label: 'Инженерно / Софтуерно', tagClass: 'tag-tech' }, company: { label: 'Фирмено ориентиран', tagClass: 'tag-company' } };
+  el.innerHTML = Object.entries(grouped).map(([cat, projs]) => `
+    <div class="section-label">${catMap[cat].label}</div>
+    <div class="project-cards">
+      ${projs.map((p, i) => {
+        const key = `${cat}-${i}`;
+        return `<div class="project-card${selectedProjects.has(key)?' selected':''}" id="proj-${key}" onclick="toggleProj('${key}')">
+          <input type="checkbox" ${selectedProjects.has(key)?'checked':''} onclick="event.stopPropagation();toggleProj('${key}')" />
+          <span class="card-tag ${catMap[p.cat].tagClass}">${catMap[p.cat].label}</span>
+          <div class="card-title">${p.title}</div>
+          <div class="card-desc">${p.desc}</div>
+        </div>`;
+      }).join('')}
+    </div>
+  `).join('');
+}
+
+function toggleProj(key) {
+  if (selectedProjects.has(key)) selectedProjects.delete(key);
+  else selectedProjects.add(key);
+  buildSpecificCards();
+}
+
+function updateRadioStyle(name) {
+  document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+    r.closest('.radio-option').classList.toggle('checked', r.checked);
+  });
+}
+
+document.addEventListener('change', e => {
+  if (e.target.type === 'radio') updateRadioStyle(e.target.name);
+});
+
+function goTo(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(`step-${n}`).classList.add('active');
+  const pct = (n / 6) * 100;
+  document.getElementById('prog').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = n < 6 ? `Стъпка ${n} от 5` : 'Завършено';
+  if (n === 3) buildCatCards();
+  if (n === 4) buildSpecificCards();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function finish() {
+  const summary = buildSummary();
+  document.getElementById('summary-output').innerHTML = summary.html;
+  goTo(6);
+}
+
+function buildSummary() {
+  const name = document.getElementById('name').value || '—';
+  const grade = document.getElementById('grade').value || '—';
+  const team = document.getElementById('team').value || '—';
+  const future = document.getElementById('future').value || '—';
+  const otherSkill = document.getElementById('other-skill').value || '—';
+  const ownIdea = document.getElementById('own-idea').value || '—';
+  const extra = document.getElementById('extra').value || '—';
+  const teamstyle = document.querySelector('input[name="teamstyle"]:checked')?.nextSibling?.textContent?.trim() || '—';
+  const priority = document.querySelector('input[name="priority"]:checked')?.nextSibling?.textContent?.trim() || '—';
+
+  const skillLines = skills.map(s => `${s.label}: ${skillRatings[s.id] ? '★'.repeat(skillRatings[s.id]) + '☆'.repeat(5 - skillRatings[s.id]) : 'не е оценено'}`).join('<br>');
+  const skillText = skills.map(s => `${s.label}: ${skillRatings[s.id] ? skillRatings[s.id] + '/5' : '—'}`).join('\n');
+
+  const catNames = [...selectedCats].map(id => categories.find(c=>c.id===id)?.title || id).join(', ') || '—';
+  const projNames = [...selectedProjects].map(key => {
+    const [cat, i] = key.split('-');
+    return specificProjects.filter(p=>p.cat===cat)[parseInt(i)]?.title || key;
+  }).join(', ') || '—';
+
+  const html = `
+    <div class="summary-card"><h3>Лична информация</h3>
+      <strong>Име:</strong> ${name}<br>
+      <strong>Клас:</strong> ${grade}<br>
+      <strong>Отбор:</strong> ${team}<br>
+      <strong>Планове след гимназията:</strong> ${future}
+    </div>
+    <div class="summary-card"><h3>Умения</h3>${skillLines}<br><em>Друго:</em> ${otherSkill}</div>
+    <div class="summary-card"><h3>Предпочитани категории</h3>${catNames}</div>
+    <div class="summary-card"><h3>Харесани проекти</h3>${projNames}</div>
+    <div class="summary-card"><h3>Работа в екип и приоритети</h3>
+      <strong>Стил на работа:</strong> ${teamstyle}<br>
+      <strong>Приоритет:</strong> ${priority}
+    </div>
+    <div class="summary-card"><h3>Собствена идея</h3>${ownIdea}</div>
+    <div class="summary-card"><h3>Допълнително</h3>${extra}</div>
+  `;
+
+  const text = `=== АНКЕТА: LESTO × ППМГ ВРАЦА 2026 ===
+Дата: ${new Date().toLocaleDateString('bg-BG')}
+
+ИМЕ: ${name}
+КЛАС: ${grade}
+ОТБОР: ${team}
+ПЛАНОВЕ: ${future}
+
+УМЕНИЯ:
+${skillText}
+Друго умение: ${otherSkill}
+
+ПРЕДПОЧИТАНИ КАТЕГОРИИ: ${catNames}
+ХАРЕСАНИ ПРОЕКТИ: ${projNames}
+
+СТИЛ НА РАБОТА В ЕКИП: ${teamstyle}
+ПРИОРИТЕТ: ${priority}
+
+СОБСТВЕНА ИДЕЯ: ${ownIdea}
+ДОПЪЛНИТЕЛНО: ${extra}`;
+
+  return { html, text };
+}
+
+function copyResults() {
+  const s = buildSummary();
+  navigator.clipboard.writeText(s.text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Копирано ✓';
+    setTimeout(() => btn.textContent = 'Копирай отговорите си (за да ги изпратиш)', 2000);
+  });
+}
+
+buildSkillGrid();
+</script>
