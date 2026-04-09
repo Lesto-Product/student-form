@@ -1,0 +1,24 @@
+{
+  "name": "student-form",
+  "version": "1.0.0",
+  "description": "Interactive Bulgarian-language project preference form for the Lesto × ППМГ Враца 2026 student initiative. Multi-step HTML/JS survey for collecting student skills and project interests across 6 teams.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lesto-Product/student-form.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Lesto-Product/student-form/issues"
+  },
+  "homepage": "https://github.com/Lesto-Product/student-form#readme",
+  "dependencies": {
+    "nodemailer": "^8.0.5"
+  }
+}

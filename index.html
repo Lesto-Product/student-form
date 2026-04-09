@@ -411,6 +411,17 @@
   .header-back:hover { background: #F4F5F7; border-color: #d0d1d6; }
   .header-back.hidden { display: none; }
 
+  .email-banner {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+  .email-banner.success { background: #E1F5EE; color: #0F6E56; border: 1.5px solid #0F6E56; }
+  .email-banner.error { background: #FEF2F2; color: #991B1B; border: 1.5px solid #EC1C24; }
+  .email-banner.sending { background: #F4F5F7; color: #6B7084; border: 1.5px solid #E8E9ED; }
+
   @media (max-width: 480px) {
     .two-col { grid-template-columns: 1fr; }
     .skill-grid { grid-template-columns: 1fr; }
@@ -565,11 +576,12 @@
     </div>
     <div class="step-eyebrow">Готово</div>
     <h1>Благодарим ти!</h1>
-    <p class="step-desc">Твоите отговори ще ни помогнат да намерим най-подходящия проект за теб и отбора ти. Ето обобщение:</p>
+    <p class="step-desc" id="summary-desc">Изпращаме отговорите ти...</p>
 
+    <div id="email-status"></div>
     <div id="summary-output"></div>
 
-    <button class="copy-btn" onclick="copyResults()">Копирай отговорите си (за да ги изпратиш)</button>
+    <button class="copy-btn" onclick="copyResults()">Копирай отговорите си</button>
   </div>
   </div>
 </div>
@@ -746,10 +758,39 @@ window.addEventListener('beforeunload', function(e) {
   }
 });
 
-function finish() {
+async function finish() {
   const summary = buildSummary();
   document.getElementById('summary-output').innerHTML = summary.html;
   goTo(6);
+
+  const statusEl = document.getElementById('email-status');
+  const descEl = document.getElementById('summary-desc');
+  statusEl.innerHTML = '<div class="email-banner sending">Изпращане на отговорите...</div>';
+  descEl.textContent = 'Изпращаме отговорите ти...';
+
+  const studentName = document.getElementById('name').value || 'Неизвестен';
+
+  try {
+    const res = await fetch('/api/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        subject: `Анкета ППМГ 2026 — ${studentName}`,
+        text: summary.text,
+        html: summary.html,
+      }),
+    });
+
+    if (res.ok) {
+      statusEl.innerHTML = '<div class="email-banner success">Отговорите ти бяха изпратени успешно!</div>';
+      descEl.textContent = 'Твоите отговори ще ни помогнат да намерим най-подходящия проект за теб и отбора ти. Ето обобщение:';
+    } else {
+      throw new Error('Server error');
+    }
+  } catch (err) {
+    statusEl.innerHTML = '<div class="email-banner error">Неуспешно изпращане. Моля, копирай отговорите си с бутона по-долу и ги изпрати ръчно.</div>';
+    descEl.textContent = 'Ето обобщение на твоите отговори:';
+  }
 }
 
 function buildSummary() {
