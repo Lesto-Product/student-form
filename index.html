@@ -1,15 +1,31 @@
-
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Анкета — Lesto × ППМГ Враца 2026</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23EC1C24'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='16' fill='white'>LP</text></svg>">
+</head>
+<body>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&display=swap');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  body, html {
+    background: #EDEEF1;
+    min-height: 100vh;
+  }
+
   .form-root {
     font-family: 'Mulish', sans-serif;
     color: #1A1D2B;
-    max-width: 680px;
+    max-width: 760px;
     margin: 0 auto;
-    padding: 2rem 1rem 3rem;
+    padding: 2.5rem 2.5rem 3rem;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: -1px 0 24px rgba(0,0,0,0.06), 1px 0 24px rgba(0,0,0,0.06);
   }
 
   .brand {
@@ -327,6 +343,53 @@
   .radio-option.checked { border-color: #EC1C24; background: #FEF2F2; color: #991B1B; font-weight: 700; }
   .radio-option.checked label, .radio-option.checked { font-weight: 700; }
 
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .header-nav-group {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .header-nav {
+    background: #EC1C24;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    box-shadow: 0 2px 8px rgba(236,28,36,0.25);
+    white-space: nowrap;
+  }
+  .header-nav:hover { background: #D11920; box-shadow: 0 4px 16px rgba(236,28,36,0.3); }
+  .header-nav:active { transform: scale(0.98); }
+  .header-nav.hidden { display: none; }
+
+  .header-back {
+    background: transparent;
+    color: #6B7084;
+    border: 1.5px solid #E8E9ED;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .header-back:hover { background: #F4F5F7; border-color: #d0d1d6; }
+  .header-back.hidden { display: none; }
+
   @media (max-width: 480px) {
     .two-col { grid-template-columns: 1fr; }
     .skill-grid { grid-template-columns: 1fr; }
@@ -334,7 +397,13 @@
 </style>
 
 <div class="form-root">
-  <div class="brand"><span class="brand-accent">Lesto</span> &nbsp;×&nbsp; ППМГ Враца — Проектна инициатива 2026</div>
+  <div class="header-row">
+    <div class="brand" style="margin-bottom:0"><span class="brand-accent">Lesto</span> &nbsp;×&nbsp; ППМГ Враца — Проектна инициатива 2026</div>
+    <div class="header-nav-group">
+      <button class="header-back hidden" id="header-back" onclick="headerBack()">←</button>
+      <button class="header-nav" id="header-nav" onclick="headerNext()">Напред →</button>
+    </div>
+  </div>
 
   <div class="progress-bar">
     <div class="progress-fill" id="prog" style="width: 20%"></div>
@@ -614,7 +683,10 @@ document.addEventListener('change', e => {
   if (e.target.type === 'radio') updateRadioStyle(e.target.name);
 });
 
+let currentStep = 1;
+
 function goTo(n) {
+  currentStep = n;
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   document.getElementById(`step-${n}`).classList.add('active');
   const pct = (n / 6) * 100;
@@ -622,8 +694,32 @@ function goTo(n) {
   document.getElementById('prog-label').textContent = n < 6 ? `Стъпка ${n} от 5` : 'Завършено';
   if (n === 3) buildCatCards();
   if (n === 4) buildSpecificCards();
+
+  const fwd = document.getElementById('header-nav');
+  const back = document.getElementById('header-back');
+  if (n === 5) { fwd.textContent = 'Завърши ✓'; fwd.classList.remove('hidden'); }
+  else if (n >= 6) { fwd.classList.add('hidden'); }
+  else { fwd.textContent = 'Напред →'; fwd.classList.remove('hidden'); }
+  if (n <= 1 || n >= 6) { back.classList.add('hidden'); }
+  else { back.classList.remove('hidden'); }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function headerNext() {
+  if (currentStep === 5) finish();
+  else if (currentStep < 6) goTo(currentStep + 1);
+}
+
+function headerBack() {
+  if (currentStep > 1) goTo(currentStep - 1);
+}
+
+window.addEventListener('beforeunload', function(e) {
+  if (currentStep > 1 && currentStep < 6) {
+    e.preventDefault();
+  }
+});
 
 function finish() {
   const summary = buildSummary();
@@ -704,3 +800,5 @@ function copyResults() {
 
 buildSkillGrid();
 </script>
+</body>
+</html>
