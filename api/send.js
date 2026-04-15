@@ -16,7 +16,7 @@ module.exports = async function handler(req, res) {
 
   try {
     await resend.emails.send({
-      from: "Анкета ППМГ 2026 <students@form.lestoproduct.com>",
+      from: "Анкета ППМГ 2026 <onboarding@resend.dev>",
       to: recipient,
       subject,
       text,
