@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error("Email send failed:", err);
-    return res.status(500).json({ error: "Failed to send email" });
+    console.error("Email send failed:", err.message, err.code);
+    return res.status(500).json({ error: "Failed to send email", detail: err.message });
   }
 };

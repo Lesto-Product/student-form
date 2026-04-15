@@ -593,7 +593,7 @@ function saveOwnIdeaState() {
 function toggleProj(key) {
   if (selectedProjects.has(key)) selectedProjects.delete(key);
   else selectedProjects.add(key);
-  buildSpecificCards();
+  buildStep4();
 }
 
 function updateRadioStyle(name) {
