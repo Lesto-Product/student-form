@@ -11,11 +11,16 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  const recipient = process.env.EMAIL_RECEIVING_ADDRESS || "k.krystev@lestoproduct.com";
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: "RESEND_API_KEY not configured" });
+  }
+
+  const resend = new Resend(apiKey);
+  const recipient = process.env.EMAIL_RECEIVING_ADDRESS || "kaimikan@protonmail.com";
 
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: "Анкета ППМГ 2026 <onboarding@resend.dev>",
       to: recipient,
       subject,
@@ -23,7 +28,12 @@ module.exports = async function handler(req, res) {
       html: html || undefined,
     });
 
-    return res.status(200).json({ ok: true });
+    if (result.error) {
+      console.error("Resend error:", result.error);
+      return res.status(500).json({ error: "Resend rejected email", detail: result.error });
+    }
+
+    return res.status(200).json({ ok: true, id: result.data?.id });
   } catch (err) {
     console.error("Email send failed:", err.message);
     return res.status(500).json({ error: "Failed to send email", detail: err.message });
