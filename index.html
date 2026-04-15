@@ -18,7 +18,6 @@
     overflow: hidden;
   }
 
-  /* Custom scrollbar */
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: #F4F5F7; }
   ::-webkit-scrollbar-thumb { background: #d4626a; border-radius: 4px; }
@@ -37,320 +36,6 @@
     box-shadow: -1px 0 24px rgba(0,0,0,0.06), 1px 0 24px rgba(0,0,0,0.06);
   }
 
-  .brand {
-    font-family: 'Mulish', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    color: #2B3045;
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-  }
-  .brand-accent { color: #EC1C24; }
-
-  .progress-bar {
-    height: 4px;
-    background: #E8E9ED;
-    border-radius: 2px;
-    position: relative;
-  }
-  .progress-fill {
-    height: 100%;
-    background: #EC1C24;
-    border-radius: 2px;
-    transition: width 0.4s cubic-bezier(.4,0,.2,1);
-  }
-  .progress-label {
-    font-size: 12px;
-    color: #6B7084;
-    margin-top: 6px;
-    font-family: 'Mulish', sans-serif;
-    font-weight: 600;
-  }
-
-  .step { display: none; }
-  .step.active { display: block; animation: fadeUp 0.3s ease; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .step-eyebrow {
-    font-family: 'Mulish', sans-serif;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    color: #EC1C24;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  h1 {
-    font-family: 'Mulish', sans-serif;
-    font-size: 26px;
-    font-weight: 900;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-    color: #2B3045;
-  }
-
-  .step-desc {
-    font-size: 15px;
-    color: #6B7084;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-
-  .field { margin-bottom: 1.25rem; }
-  .field label {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    color: #2B3045;
-    margin-bottom: 6px;
-  }
-  .field input:not([type="radio"]):not([type="checkbox"]), .field textarea, .field select {
-    width: 100%;
-    font-family: 'Mulish', sans-serif;
-    font-size: 15px;
-    padding: 10px 14px;
-    border: 1.5px solid #E8E9ED;
-    border-radius: 8px;
-    background: #fff;
-    color: #1A1D2B;
-    transition: border-color 0.15s;
-    outline: none;
-  }
-  .field input:not([type="radio"]):not([type="checkbox"]):focus, .field textarea:focus, .field select:focus {
-    border-color: #EC1C24;
-  }
-  .field textarea { min-height: 90px; resize: vertical; }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-  .skill-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 1.5rem;
-  }
-
-  .skill-item {
-    border: 1.5px solid #E8E9ED;
-    border-radius: 10px;
-    padding: 14px 16px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    transition: border-color 0.15s;
-  }
-  .skill-item:hover { border-color: #d0d1d6; }
-
-  .skill-item label {
-    font-size: 13px;
-    font-weight: 700;
-    color: #2B3045;
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  .star-row { display: flex; gap: 4px; }
-  .star {
-    width: 32px; height: 32px;
-    cursor: pointer;
-    color: #d0d1d6;
-    font-size: 24px;
-    line-height: 32px;
-    text-align: center;
-    transition: color 0.15s;
-    user-select: none;
-    border-radius: 4px;
-  }
-  .star:hover { background: #FEF2F2; }
-  .star.lit { color: #EC1C24; }
-
-  .project-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
-
-  .project-card {
-    border: 1.5px solid #E8E9ED;
-    border-radius: 10px;
-    padding: 16px 18px;
-    background: #fff;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    border-left: 4px solid #E8E9ED;
-  }
-
-  .project-card:hover {
-    border-color: #d0d1d6;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    border-left-color: #d0d1d6;
-  }
-
-  .project-card.selected {
-    border-color: #EC1C24;
-    border-left-color: #EC1C24;
-    box-shadow: 0 4px 16px rgba(236,28,36,0.1);
-  }
-
-  .project-card input[type=checkbox] {
-    position: absolute;
-    top: 16px; right: 16px;
-    width: 16px; height: 16px;
-    accent-color: #EC1C24;
-  }
-
-  .card-tag {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 4px;
-    display: inline-block;
-    margin-bottom: 6px;
-  }
-
-  .tag-life { background: #E1F5EE; color: #0F6E56; }
-  .tag-tech { background: #E6F1FB; color: #185FA5; }
-  .tag-company { background: #FEE8E8; color: #B91C1C; }
-
-  .card-title {
-    font-family: 'Mulish', sans-serif;
-    font-size: 15px;
-    font-weight: 800;
-    margin-bottom: 3px;
-    color: #2B3045;
-    padding-right: 24px;
-  }
-
-  .card-desc {
-    font-size: 13px;
-    color: #6B7084;
-    line-height: 1.5;
-  }
-
-  .project-card.selected .card-title { color: #2B3045; }
-  .project-card.selected .card-desc { color: #6B7084; }
-
-  .section-label {
-    font-family: 'Mulish', sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #2B3045;
-    margin: 1.5rem 0 8px;
-    padding-bottom: 6px;
-    border-bottom: 2px solid #E8E9ED;
-  }
-
-  .btn-row {
-    display: flex;
-    gap: 10px;
-    margin-top: 2rem;
-    align-items: center;
-  }
-
-  .btn-primary {
-    background: #EC1C24;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 28px;
-    font-family: 'Mulish', sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 0.03em;
-    cursor: pointer;
-    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
-    box-shadow: 0 2px 8px rgba(236,28,36,0.25);
-  }
-  .btn-primary:hover { background: #D11920; box-shadow: 0 4px 16px rgba(236,28,36,0.3); }
-  .btn-primary:active { transform: scale(0.98); }
-
-  .btn-back {
-    background: transparent;
-    color: #6B7084;
-    border: 1.5px solid #E8E9ED;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-family: 'Mulish', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .btn-back:hover { background: #F4F5F7; border-color: #d0d1d6; }
-
-  .required { color: #EC1C24; }
-
-  .summary-card {
-    border: 1.5px solid #E8E9ED;
-    border-radius: 10px;
-    border-left: 4px solid #EC1C24;
-    background: #F4F5F7;
-    padding: 1.25rem;
-    margin-bottom: 1rem;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .summary-card h3 {
-    font-family: 'Mulish', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    color: #2B3045;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .copy-btn {
-    margin-top: 1.5rem;
-    background: #2B3045;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 20px;
-    font-family: 'Mulish', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    color: #fff;
-    transition: background 0.15s;
-    width: 100%;
-  }
-  .copy-btn:hover { background: #3C4461; }
-
-  .done-mark {
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: #FEE8E8;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1rem;
-  }
-
-  .done-mark svg { width: 22px; height: 22px; }
-
-  .radio-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem; }
-  label.radio-option {
-    display: flex; align-items: center; gap: 10px;
-    padding: 12px 16px;
-    border: 1.5px solid #E8E9ED;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
-    font-weight: 500;
-    color: #1A1D2B;
-  }
-  .radio-option:hover { border-color: #d0d1d6; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-  .radio-option input { accent-color: #EC1C24; }
-  .radio-option.checked { border-color: #EC1C24; background: #FEF2F2; color: #991B1B; font-weight: 700; }
-  .radio-option.checked label, .radio-option.checked { font-weight: 700; }
-
   .form-header {
     flex-shrink: 0;
     padding: 2rem 2.5rem 0;
@@ -364,6 +49,16 @@
     padding: 2rem 2.5rem 3rem;
   }
 
+  .brand {
+    font-family: 'Mulish', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #2B3045;
+    text-transform: uppercase;
+  }
+  .brand-accent { color: #EC1C24; }
+
   .header-row {
     display: flex;
     justify-content: space-between;
@@ -371,53 +66,171 @@
     margin-bottom: 1.25rem;
   }
 
-  .header-nav-group {
-    display: flex;
-    gap: 6px;
-    flex-shrink: 0;
-  }
+  .header-nav-group { display: flex; gap: 6px; flex-shrink: 0; }
 
   .header-nav {
-    background: #EC1C24;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 20px;
-    font-family: 'Mulish', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    cursor: pointer;
+    background: #EC1C24; color: white; border: none; border-radius: 8px;
+    padding: 8px 20px; font-family: 'Mulish', sans-serif; font-size: 13px;
+    font-weight: 800; cursor: pointer; white-space: nowrap;
     transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
     box-shadow: 0 2px 8px rgba(236,28,36,0.25);
-    white-space: nowrap;
   }
   .header-nav:hover { background: #D11920; box-shadow: 0 4px 16px rgba(236,28,36,0.3); }
   .header-nav:active { transform: scale(0.98); }
   .header-nav.hidden { display: none; }
 
   .header-back {
-    background: transparent;
-    color: #6B7084;
-    border: 1.5px solid #E8E9ED;
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-family: 'Mulish', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
+    background: transparent; color: #6B7084; border: 1.5px solid #E8E9ED;
+    border-radius: 8px; padding: 8px 14px; font-family: 'Mulish', sans-serif;
+    font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap;
     transition: background 0.15s, border-color 0.15s;
-    white-space: nowrap;
   }
   .header-back:hover { background: #F4F5F7; border-color: #d0d1d6; }
   .header-back.hidden { display: none; }
 
-  .email-banner {
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 1.25rem;
+  .progress-bar { height: 4px; background: #E8E9ED; border-radius: 2px; position: relative; }
+  .progress-fill { height: 100%; background: #EC1C24; border-radius: 2px; transition: width 0.4s cubic-bezier(.4,0,.2,1); }
+  .progress-label { font-size: 12px; color: #6B7084; margin-top: 6px; font-family: 'Mulish', sans-serif; font-weight: 600; }
+
+  .step { display: none; }
+  .step.active { display: block; animation: fadeUp 0.3s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
+
+  .step-eyebrow {
+    font-family: 'Mulish', sans-serif; font-size: 11px; font-weight: 800;
+    letter-spacing: 0.15em; color: #EC1C24; text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+
+  h1 { font-family: 'Mulish', sans-serif; font-size: 26px; font-weight: 900; line-height: 1.2; margin-bottom: 0.5rem; color: #2B3045; }
+
+  .step-desc { font-size: 15px; color: #6B7084; margin-bottom: 2rem; line-height: 1.6; }
+
+  .field { margin-bottom: 1.25rem; }
+  .field label { display: block; font-size: 13px; font-weight: 700; color: #2B3045; margin-bottom: 6px; }
+  .field input:not([type="radio"]):not([type="checkbox"]), .field textarea, .field select {
+    width: 100%; font-family: 'Mulish', sans-serif; font-size: 15px;
+    padding: 10px 14px; border: 1.5px solid #E8E9ED; border-radius: 8px;
+    background: #fff; color: #1A1D2B; transition: border-color 0.15s; outline: none;
+  }
+  .field input:not([type="radio"]):not([type="checkbox"]):focus, .field textarea:focus, .field select:focus { border-color: #EC1C24; }
+  .field textarea { min-height: 90px; resize: vertical; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
+
+  .skill-item {
+    border: 1.5px solid #E8E9ED; border-radius: 10px; padding: 14px 16px;
+    background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: border-color 0.15s;
+  }
+  .skill-item:hover { border-color: #d0d1d6; }
+  .skill-item label { font-size: 13px; font-weight: 700; color: #2B3045; display: block; margin-bottom: 8px; }
+
+  .star-row { display: flex; gap: 4px; }
+  .star {
+    width: 32px; height: 32px; cursor: pointer; color: #d0d1d6; font-size: 24px;
+    line-height: 32px; text-align: center; transition: color 0.15s; user-select: none; border-radius: 4px;
+  }
+  .star:hover { background: #FEF2F2; }
+  .star.lit { color: #EC1C24; }
+
+  .project-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+
+  .project-card {
+    border: 1.5px solid #E8E9ED; border-radius: 10px; padding: 16px 18px;
+    background: #fff; cursor: pointer; position: relative; border-left: 4px solid #E8E9ED;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover { border-color: #d0d1d6; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-left-color: #d0d1d6; }
+  .project-card.selected { border-color: #EC1C24; border-left-color: #EC1C24; box-shadow: 0 4px 16px rgba(236,28,36,0.1); }
+  .project-card input[type=checkbox], .project-card input[type=radio] {
+    position: absolute; top: 16px; right: 16px; width: 16px; height: 16px; accent-color: #EC1C24;
+  }
+
+  .card-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 6px;
+  }
+  .tag-life { background: #E1F5EE; color: #0F6E56; }
+  .tag-tech { background: #E6F1FB; color: #185FA5; }
+  .tag-company { background: #FEE8E8; color: #B91C1C; }
+  .tag-own { background: #F3EDFF; color: #6B21A8; }
+
+  .card-title { font-family: 'Mulish', sans-serif; font-size: 15px; font-weight: 800; margin-bottom: 3px; color: #2B3045; padding-right: 24px; }
+  .card-desc { font-size: 13px; color: #6B7084; line-height: 1.5; }
+
+  .section-label {
+    font-family: 'Mulish', sans-serif; font-size: 12px; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase; color: #2B3045;
+    margin: 1.5rem 0 8px; padding-bottom: 6px; border-bottom: 2px solid #E8E9ED;
+  }
+
+  .disclaimer {
+    background: #FFFBEB; border: 1.5px solid #F59E0B; border-radius: 8px;
+    padding: 10px 14px; font-size: 13px; color: #92400E; line-height: 1.5; margin-bottom: 1.5rem;
+  }
+
+  .btn-row { display: flex; gap: 10px; margin-top: 2rem; align-items: center; }
+
+  .btn-primary {
+    background: #EC1C24; color: white; border: none; border-radius: 8px;
+    padding: 12px 28px; font-family: 'Mulish', sans-serif; font-size: 14px;
+    font-weight: 800; letter-spacing: 0.03em; cursor: pointer;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    box-shadow: 0 2px 8px rgba(236,28,36,0.25);
+  }
+  .btn-primary:hover { background: #D11920; box-shadow: 0 4px 16px rgba(236,28,36,0.3); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-back {
+    background: transparent; color: #6B7084; border: 1.5px solid #E8E9ED;
+    border-radius: 8px; padding: 10px 20px; font-family: 'Mulish', sans-serif;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-back:hover { background: #F4F5F7; border-color: #d0d1d6; }
+
+  .required { color: #EC1C24; }
+
+  .summary-card {
+    border: 1.5px solid #E8E9ED; border-radius: 10px; border-left: 4px solid #EC1C24;
+    background: #F4F5F7; padding: 1.25rem; margin-bottom: 1rem; font-size: 14px; line-height: 1.7;
+  }
+  .summary-card h3 {
+    font-family: 'Mulish', sans-serif; font-size: 13px; font-weight: 800; color: #2B3045;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;
+  }
+
+  .copy-btn {
+    margin-top: 1.5rem; background: #2B3045; border: none; border-radius: 8px;
+    padding: 12px 20px; font-family: 'Mulish', sans-serif; font-size: 14px;
+    font-weight: 700; cursor: pointer; color: #fff; transition: background 0.15s; width: 100%;
+  }
+  .copy-btn:hover { background: #3C4461; }
+
+  .done-mark {
+    width: 48px; height: 48px; border-radius: 50%; background: #FEE8E8;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+  }
+  .done-mark svg { width: 22px; height: 22px; }
+
+  .radio-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem; }
+  label.radio-option {
+    display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+    border: 1.5px solid #E8E9ED; border-radius: 8px; cursor: pointer;
+    font-size: 14px; font-weight: 500; color: #1A1D2B;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  }
+  .radio-option:hover { border-color: #d0d1d6; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .radio-option input { accent-color: #EC1C24; }
+  .radio-option.checked { border-color: #EC1C24; background: #FEF2F2; color: #991B1B; font-weight: 700; }
+
+  .email-banner { padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; margin-bottom: 1.25rem; }
   .email-banner.success { background: #E1F5EE; color: #0F6E56; border: 1.5px solid #0F6E56; }
   .email-banner.error { background: #FEF2F2; color: #991B1B; border: 1.5px solid #EC1C24; }
   .email-banner.sending { background: #F4F5F7; color: #6B7084; border: 1.5px solid #E8E9ED; }
@@ -431,20 +244,20 @@
 <div class="form-root">
   <div class="form-header">
     <div class="header-row">
-      <div class="brand" style="margin-bottom:0"><span class="brand-accent">Lesto</span> &nbsp;×&nbsp; ППМГ Враца — Проектна инициатива 2026</div>
+      <div class="brand"><img src="Lesto-Product-Logo-cropped.svg" alt="Lesto Product" style="height:28px;vertical-align:middle;margin-right:8px"><span class="brand-accent">Lesto</span> &nbsp;×&nbsp; ППМГ Враца — Проектна инициатива 2026</div>
       <div class="header-nav-group">
         <button class="header-back hidden" id="header-back" onclick="headerBack()">←</button>
         <button class="header-nav" id="header-nav" onclick="headerNext()">Напред →</button>
       </div>
     </div>
-
     <div class="progress-bar">
-      <div class="progress-fill" id="prog" style="width: 20%"></div>
+      <div class="progress-fill" id="prog" style="width: 16.6%"></div>
     </div>
-    <div class="progress-label" id="prog-label">Стъпка 1 от 5</div>
+    <div class="progress-label" id="prog-label">Стъпка 1 от 6</div>
   </div>
 
   <div class="form-body" id="form-body">
+
   <!-- STEP 1: Identity -->
   <div class="step active" id="step-1">
     <div class="step-eyebrow">Добре дошли</div>
@@ -464,12 +277,17 @@
 
     <div class="field">
       <label>Отбор (ако вече знаеш)</label>
-      <input type="text" id="team" placeholder="напр. Отбор 3, или оставете празно" />
+      <input type="text" id="team" placeholder="напр. Отбор 3, или остави празно" />
     </div>
 
     <div class="field">
       <label>Какво планираш да учиш / работиш след гимназията? <span class="required">*</span></label>
       <input type="text" id="future" placeholder="напр. Компютърни науки, Медицина, Не съм сигурен/а..." />
+    </div>
+
+    <div class="field">
+      <label>Какви са хобитата ти?</label>
+      <input type="text" id="hobbies" placeholder="напр. футбол, рисуване, програмиране, готвене..." />
     </div>
 
     <div class="btn-row">
@@ -496,27 +314,28 @@
     </div>
   </div>
 
-  <!-- STEP 3: Project Categories -->
+  <!-- STEP 3: Category (single select) -->
   <div class="step" id="step-3">
-    <div class="step-eyebrow">Типове проекти</div>
-    <h1>Кое те вълнува?</h1>
-    <p class="step-desc">Прочети описанията и избери до 2 категории, които те привличат най-много.</p>
+    <div class="step-eyebrow">Посока</div>
+    <h1>Каква посока те привлича?</h1>
+    <p class="step-desc">Избери една или повече посоки, по които искаш да работиш.</p>
 
     <div class="project-cards" id="cat-cards"></div>
 
     <div class="btn-row">
       <button class="btn-back" onclick="goTo(2)">← Назад</button>
-      <button class="btn-primary" onclick="goTo(4)">Напред →</button>
+      <button class="btn-primary" onclick="if(selectedCats.size===0){alert('Моля, избери поне една посока.');}else{goTo(4);}">Напред →</button>
     </div>
   </div>
 
-  <!-- STEP 4: Specific projects -->
+  <!-- STEP 4: Dynamic — projects + own idea based on step 3 selection -->
   <div class="step" id="step-4">
     <div class="step-eyebrow">Конкретни идеи</div>
     <h1>Кой проект те вдъхновява?</h1>
-    <p class="step-desc">Маркирай всички проекти, с които би се радвал/а да работиш. Избери колкото искаш.</p>
+    <p class="step-desc" id="step4-desc">Маркирай всички проекти, с които би се радвал/а да работиш. Избери колкото искаш.</p>
 
     <div id="specific-cards"></div>
+    <div id="own-idea-section"></div>
 
     <div class="btn-row">
       <button class="btn-back" onclick="goTo(3)">← Назад</button>
@@ -524,25 +343,24 @@
     </div>
   </div>
 
-  <!-- STEP 5: Open input -->
+  <!-- STEP 5: Role, AI, priorities -->
   <div class="step" id="step-5">
-    <div class="step-eyebrow">Твоят глас</div>
-    <h1>Последни въпроси</h1>
-    <p class="step-desc">Тук можеш да бъдеш напълно свободен/на в отговорите си.</p>
+    <div class="step-eyebrow">Роля и предпочитания</div>
+    <h1>Как искаш да допринесеш?</h1>
+    <p class="step-desc">Помогни ни да разберем каква роля те привлича и какви инструменти вече ползваш.</p>
 
     <div class="field">
-      <label>Имаш ли своя идея за проект, която не сме споменали?</label>
-      <textarea id="own-idea" placeholder="Опиши я накратко..."></textarea>
+      <label>Каква роля в екипа предпочиташ? <span class="required">*</span></label>
+      <div class="radio-group" id="role-group">
+        <label class="radio-option"><input type="radio" name="role" value="marketing" /> Маркетинг (създаване на промоционални материали — B2B/B2C)</label>
+        <label class="radio-option"><input type="radio" name="role" value="developer" /> Разработчик (програмиране и техническа реализация)</label>
+        <label class="radio-option"><input type="radio" name="role" value="product-owner" /> Продуктов мениджър (управление на детайлите и посоката на проекта)</label>
+      </div>
     </div>
 
     <div class="field">
-      <label>Как предпочиташ да работиш в екип?</label>
-      <div class="radio-group" id="teamstyle-group">
-        <label class="radio-option"><input type="radio" name="teamstyle" value="leader" /> Обичам да поемам инициативата</label>
-        <label class="radio-option"><input type="radio" name="teamstyle" value="executor" /> Предпочитам да изпълнявам конкретни задачи</label>
-        <label class="radio-option"><input type="radio" name="teamstyle" value="creative" /> Силата ми е в идеите и дизайна</label>
-        <label class="radio-option"><input type="radio" name="teamstyle" value="flexible" /> Адаптирам се според нуждата</label>
-      </div>
+      <label>Какви AI технологии или инструменти ползваш в момента?</label>
+      <input type="text" id="ai-tools" placeholder="напр. ChatGPT, Copilot, Midjourney, нищо засега..." />
     </div>
 
     <div class="field">
@@ -583,6 +401,7 @@
 
     <button class="copy-btn" onclick="copyResults()">Копирай отговорите си</button>
   </div>
+
   </div>
 </div>
 
@@ -593,7 +412,8 @@ const skills = [
   { id: 'math', label: 'Математика / анализ' },
   { id: 'research', label: 'Проучване / писане' },
   { id: 'cad', label: '3D / CAD (SolidWorks)' },
-  { id: 'excel', label: 'Excel / таблици' },
+  { id: 'marketing', label: 'Маркетинг / реклама' },
+  { id: 'leadership', label: 'Лидерство / организация' },
 ];
 
 const skillRatings = {};
@@ -602,36 +422,38 @@ const categories = [
   {
     id: 'life',
     tag: 'life',
-    tagLabel: 'Жизнени умения',
-    title: 'Приложения за живота',
-    desc: 'Интерактивни уеб инструменти по теми, важни за младите хора — финанси, здраве, кариера, взаимоотношения. Всеки отбор прави един; накрая всички 6 са ваши.',
-  },
-  {
-    id: 'tech',
-    tag: 'tech',
-    tagLabel: 'Инженерно / Софтуерно',
-    title: 'Технически проект',
-    desc: 'Софтуерен инструмент, алгоритъм, уебсайт или хардуерен прототип с реална употреба. По-свободна насока, по-голямо техническо предизвикателство.',
+    tagLabel: 'Приложения за живота',
+    title: 'Приложения за живота / не комерсиална употреба',
+    desc: 'Интерактивни уеб инструменти по теми, важни за младите хора — финанси, здраве, спорт, кариера. Всеки отбор прави един; накрая всички са ваши.',
   },
   {
     id: 'company',
     tag: 'company',
-    tagLabel: 'Фирмено ориентиран',
-    title: 'Проект с Lesto',
-    desc: 'Работа с реални фирмени данни и инструменти — от проследяване на производството до дигитализация на процеси. Реален бизнес опит с менторство от софтуерния екип на Lesto.',
+    tagLabel: 'Фирмен проект',
+    title: 'Проекти за Lesto Product',
+    desc: 'Работа с реални фирмени данни и инструменти — от проследяване на производството до дигитализация на процеси. Реален бизнес опит с менторство от екипа.',
+  },
+  {
+    id: 'own',
+    tag: 'own',
+    tagLabel: 'Своя идея',
+    title: 'Своя идея (лична или бизнес)',
+    desc: 'Имаш собствена идея за проект, която искаш да реализираш? Разкажи ни за нея — ще обсъдим дали можем да те подкрепим.',
   },
 ];
 
 const specificProjects = [
-  { cat: 'life', title: 'Финансов наръчник', desc: 'Приложение за бюджетиране, спестявания и инвестиции за млади хора.' },
+  // Life / non-commercial
+  { cat: 'life', title: 'Финансово приложение', desc: 'Инструмент за бюджетиране, проследяване на разходи и планиране на спестявания или инвестиции.' },
   { cat: 'life', title: 'Хранене и спорт', desc: 'Интерактивен планировчик на хранене, калории и тренировки.' },
   { cat: 'life', title: 'Наръчник за отношения', desc: 'Ресурс за комуникация, граници и емоционална интелигентност.' },
   { cat: 'life', title: 'Кариерен компас', desc: 'Помощник за избор на специалност, CV и подготовка за интервю.' },
   { cat: 'life', title: 'Наръчник за психично здраве', desc: 'Инструменти за управление на стрес, съня и продуктивността.' },
   { cat: 'life', title: 'Правен наръчник за млади', desc: 'Основни права, трудов договор, наем, студентски кредити.' },
-  { cat: 'tech', title: 'Уеб приложение по твой избор', desc: 'Отборът предлага идеята и я реализира от нулата.' },
-  { cat: 'tech', title: 'Инструмент с AI интеграция', desc: 'Приложение, използващо езиков модел или машинно обучение.' },
-  { cat: 'tech', title: 'Мобилна / прогресивна уеб апликация', desc: 'Инструмент, достъпен и като мобилно приложение.' },
+  { cat: 'life', title: 'Софтуер за анализ на жилища', desc: 'Тракер за имоти — сравняване на цени, локации и характеристики при търсене на жилище.' },
+  { cat: 'life', title: 'Tinder за спортни мачове', desc: 'Платформа за намиране на партньори за тенис на маса, футбол и други — с карта на свободни и платени игрища.' },
+  { cat: 'life', title: 'Карта на фитнес площадки', desc: 'Интерактивна карта на площадки за улична фитнес в града — с филтри, снимки и рейтинг.' },
+  // Company
   { cat: 'company', title: 'SolidWorks дизайн', desc: 'Проектиране на компонент или механизъм за реален продукт на Lesto.' },
   { cat: 'company', title: 'Infor ERP интеграция', desc: 'Малък инструмент или отчет, свързан с ERP данните на компанията.' },
   { cat: 'company', title: 'Дигитализация на Excel процес', desc: 'Превръщане на ръчен Excel процес в автоматизирано уеб решение.' },
@@ -645,6 +467,8 @@ const specificProjects = [
 
 const selectedCats = new Set();
 const selectedProjects = new Set();
+
+const TOTAL_STEPS = 6;
 
 function buildSkillGrid() {
   const grid = document.getElementById('skill-grid');
@@ -668,8 +492,8 @@ function rate(id, val) {
 function buildCatCards() {
   const el = document.getElementById('cat-cards');
   el.innerHTML = categories.map(c => `
-    <div class="project-card${selectedCats.has(c.id)?' selected':''}" id="cat-${c.id}" onclick="toggleCat('${c.id}')">
-      <input type="checkbox" ${selectedCats.has(c.id)?'checked':''} onclick="event.stopPropagation();toggleCat('${c.id}')" />
+    <div class="project-card${selectedCats.has(c.id) ? ' selected' : ''}" id="cat-${c.id}" onclick="toggleCat('${c.id}')">
+      <input type="checkbox" ${selectedCats.has(c.id) ? 'checked' : ''} onclick="event.stopPropagation();toggleCat('${c.id}')" />
       <span class="card-tag tag-${c.tag}">${c.tagLabel}</span>
       <div class="card-title">${c.title}</div>
       <div class="card-desc">${c.desc}</div>
@@ -678,30 +502,92 @@ function buildCatCards() {
 }
 
 function toggleCat(id) {
-  if (selectedCats.has(id)) { selectedCats.delete(id); }
-  else { if (selectedCats.size >= 2) { alert('Моля, избери до 2 категории.'); return; } selectedCats.add(id); }
+  if (selectedCats.has(id)) selectedCats.delete(id);
+  else selectedCats.add(id);
   buildCatCards();
 }
 
-function buildSpecificCards() {
-  const el = document.getElementById('specific-cards');
-  const grouped = {};
-  specificProjects.forEach(p => { if (!grouped[p.cat]) grouped[p.cat] = []; grouped[p.cat].push(p); });
-  const catMap = { life: { label: 'Жизнени умения', tagClass: 'tag-life' }, tech: { label: 'Инженерно / Софтуерно', tagClass: 'tag-tech' }, company: { label: 'Фирмено ориентиран', tagClass: 'tag-company' } };
-  el.innerHTML = Object.entries(grouped).map(([cat, projs]) => `
-    <div class="section-label">${catMap[cat].label}</div>
-    <div class="project-cards">
-      ${projs.map((p, i) => {
-        const key = `${cat}-${i}`;
-        return `<div class="project-card${selectedProjects.has(key)?' selected':''}" id="proj-${key}" onclick="toggleProj('${key}')">
-          <input type="checkbox" ${selectedProjects.has(key)?'checked':''} onclick="event.stopPropagation();toggleProj('${key}')" />
-          <span class="card-tag ${catMap[p.cat].tagClass}">${catMap[p.cat].label}</span>
-          <div class="card-title">${p.title}</div>
-          <div class="card-desc">${p.desc}</div>
+function buildStep4() {
+  const cardsEl = document.getElementById('specific-cards');
+  const ownEl = document.getElementById('own-idea-section');
+
+  const catMap = {
+    life: { label: 'Приложения за живота', tagClass: 'tag-life' },
+    company: { label: 'Фирмен проект', tagClass: 'tag-company' },
+  };
+
+  // Build project cards for life and/or company
+  const projectCats = ['life', 'company'].filter(c => selectedCats.has(c));
+  if (projectCats.length > 0) {
+    cardsEl.innerHTML = projectCats.map(cat => {
+      const filtered = specificProjects.filter(p => p.cat === cat);
+      const info = catMap[cat];
+      return `
+        <div class="section-label">${info.label}</div>
+        <div class="project-cards">
+          ${filtered.map((p, i) => {
+            const key = `${p.cat}-${i}`;
+            return `<div class="project-card${selectedProjects.has(key) ? ' selected' : ''}" id="proj-${key}" onclick="toggleProj('${key}')">
+              <input type="checkbox" ${selectedProjects.has(key) ? 'checked' : ''} onclick="event.stopPropagation();toggleProj('${key}')" />
+              <span class="card-tag ${info.tagClass}">${info.label}</span>
+              <div class="card-title">${p.title}</div>
+              <div class="card-desc">${p.desc}</div>
+            </div>`;
+          }).join('')}
         </div>`;
-      }).join('')}
-    </div>
-  `).join('');
+    }).join('');
+  } else {
+    cardsEl.innerHTML = '';
+  }
+
+  // Build own idea section
+  if (selectedCats.has('own')) {
+    ownEl.innerHTML = `
+      <div class="section-label">Своя идея</div>
+      <div class="disclaimer">⚠ Работата по собствена идея не е гарантирана — зависи от осъществимостта и наличните ресурси. Организаторите ще се свържат с теб, за да обсъдите възможностите.</div>
+      <div class="field">
+        <label>Опиши идеята си накратко <span class="required">*</span></label>
+        <textarea id="own-idea" placeholder="Какво представлява проектът, който искаш да направиш?">${ownIdeaState.idea}</textarea>
+      </div>
+      <div class="field">
+        <label>Какъв проблем решава?</label>
+        <textarea id="own-problem" placeholder="Кой ще ползва това и защо му е нужно?" style="min-height:70px">${ownIdeaState.problem}</textarea>
+      </div>
+      <div class="field">
+        <label>Кой е целевият потребител?</label>
+        <input type="text" id="own-target" placeholder="напр. ученици, малки бизнеси, спортисти..." value="${ownIdeaState.target}" />
+      </div>
+      <div class="field">
+        <label>Как би валидирал/а идеята си?</label>
+        <input type="text" id="own-validation" placeholder="напр. анкета сред съученици, разговори с потенциални потребители..." value="${ownIdeaState.validation}" />
+      </div>`;
+  } else {
+    ownEl.innerHTML = '';
+  }
+
+  // Update step 4 description
+  const descEl = document.getElementById('step4-desc');
+  if (selectedCats.has('own') && projectCats.length === 0) {
+    descEl.textContent = 'Опиши идеята си и ни помогни да разберем как можем да те подкрепим.';
+  } else if (selectedCats.has('own')) {
+    descEl.textContent = 'Маркирай проекти, които те вдъхновяват, и/или опиши собствената си идея.';
+  } else {
+    descEl.textContent = 'Маркирай всички проекти, с които би се радвал/а да работиш. Избери колкото искаш.';
+  }
+}
+
+// Preserve own idea fields when rebuilding
+const ownIdeaState = { idea: '', problem: '', target: '', validation: '' };
+
+function saveOwnIdeaState() {
+  const idea = document.getElementById('own-idea');
+  const problem = document.getElementById('own-problem');
+  const target = document.getElementById('own-target');
+  const validation = document.getElementById('own-validation');
+  if (idea) ownIdeaState.idea = idea.value;
+  if (problem) ownIdeaState.problem = problem.value;
+  if (target) ownIdeaState.target = target.value;
+  if (validation) ownIdeaState.validation = validation.value;
 }
 
 function toggleProj(key) {
@@ -717,26 +603,31 @@ function updateRadioStyle(name) {
 }
 
 document.addEventListener('change', e => {
-  if (e.target.type === 'radio') updateRadioStyle(e.target.name);
+  if (e.target.type === 'radio' && e.target.closest('.radio-option')) updateRadioStyle(e.target.name);
 });
 
 let currentStep = 1;
 
 function goTo(n) {
+  if (n === 4) saveOwnIdeaState();
   currentStep = n;
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   document.getElementById(`step-${n}`).classList.add('active');
-  const pct = (n / 6) * 100;
+
+  const pct = (n / TOTAL_STEPS) * 100;
   document.getElementById('prog').style.width = pct + '%';
-  document.getElementById('prog-label').textContent = n < 6 ? `Стъпка ${n} от 5` : 'Завършено';
+  document.getElementById('prog-label').textContent = n < TOTAL_STEPS ? `Стъпка ${n} от ${TOTAL_STEPS}` : 'Завършено';
+
   if (n === 3) buildCatCards();
-  if (n === 4) buildSpecificCards();
+  if (n === 4) buildStep4();
 
   const fwd = document.getElementById('header-nav');
   const back = document.getElementById('header-back');
+
   if (n === 5) { fwd.textContent = 'Завърши ✓'; fwd.classList.remove('hidden'); }
-  else if (n >= 6) { fwd.classList.add('hidden'); }
+  else if (n >= TOTAL_STEPS) { fwd.classList.add('hidden'); }
   else { fwd.textContent = 'Напред →'; fwd.classList.remove('hidden'); }
+
   if (n <= 1) { back.classList.add('hidden'); }
   else { back.classList.remove('hidden'); }
 
@@ -744,6 +635,7 @@ function goTo(n) {
 }
 
 function headerNext() {
+  if (currentStep === 3 && selectedCats.size === 0) { alert('Моля, избери поне една посока.'); return; }
   if (currentStep === 5) finish();
   else if (currentStep < 6) goTo(currentStep + 1);
 }
@@ -753,9 +645,7 @@ function headerBack() {
 }
 
 window.addEventListener('beforeunload', function(e) {
-  if (currentStep > 1 && currentStep < 6) {
-    e.preventDefault();
-  }
+  if (currentStep > 1 && currentStep < TOTAL_STEPS) { e.preventDefault(); }
 });
 
 async function finish() {
@@ -798,36 +688,68 @@ function buildSummary() {
   const grade = document.getElementById('grade').value || '—';
   const team = document.getElementById('team').value || '—';
   const future = document.getElementById('future').value || '—';
+  const hobbies = document.getElementById('hobbies').value || '—';
   const otherSkill = document.getElementById('other-skill').value || '—';
-  const ownIdea = document.getElementById('own-idea').value || '—';
+  const aiTools = document.getElementById('ai-tools').value || '—';
   const extra = document.getElementById('extra').value || '—';
-  const teamstyle = document.querySelector('input[name="teamstyle"]:checked')?.nextSibling?.textContent?.trim() || '—';
+  const role = document.querySelector('input[name="role"]:checked')?.nextSibling?.textContent?.trim() || '—';
   const priority = document.querySelector('input[name="priority"]:checked')?.nextSibling?.textContent?.trim() || '—';
 
   const skillLines = skills.map(s => `${s.label}: ${skillRatings[s.id] ? '★'.repeat(skillRatings[s.id]) + '☆'.repeat(5 - skillRatings[s.id]) : 'не е оценено'}`).join('<br>');
   const skillText = skills.map(s => `${s.label}: ${skillRatings[s.id] ? skillRatings[s.id] + '/5' : '—'}`).join('\n');
 
-  const catNames = [...selectedCats].map(id => categories.find(c=>c.id===id)?.title || id).join(', ') || '—';
+  const catNames = [...selectedCats].map(id => categories.find(c => c.id === id)?.title || id).join(', ') || '—';
+
+  let projectSection = '';
+  let projectText = '';
+
   const projNames = [...selectedProjects].map(key => {
     const [cat, i] = key.split('-');
-    return specificProjects.filter(p=>p.cat===cat)[parseInt(i)]?.title || key;
-  }).join(', ') || '—';
+    return specificProjects.filter(p => p.cat === cat)[parseInt(i)]?.title || key;
+  }).join(', ');
+
+  if (projNames) {
+    projectSection += `<div class="summary-card"><h3>Харесани проекти</h3>${projNames}</div>`;
+    projectText += `ХАРЕСАНИ ПРОЕКТИ: ${projNames}`;
+  }
+
+  if (selectedCats.has('own')) {
+    saveOwnIdeaState();
+    const ownIdea = ownIdeaState.idea || '—';
+    const ownProblem = ownIdeaState.problem || '—';
+    const ownTarget = ownIdeaState.target || '—';
+    const ownValidation = ownIdeaState.validation || '—';
+    projectSection += `
+      <div class="summary-card"><h3>Своя идея</h3>
+        <strong>Описание:</strong> ${ownIdea}<br>
+        <strong>Проблем:</strong> ${ownProblem}<br>
+        <strong>Целева група:</strong> ${ownTarget}<br>
+        <strong>Валидация:</strong> ${ownValidation}
+      </div>`;
+    projectText += `${projectText ? '\n' : ''}СВОЯ ИДЕЯ: ${ownIdea}\nПРОБЛЕМ: ${ownProblem}\nЦЕЛЕВА ГРУПА: ${ownTarget}\nВАЛИДАЦИЯ: ${ownValidation}`;
+  }
+
+  if (!projectSection) {
+    projectSection = `<div class="summary-card"><h3>Проекти</h3>—</div>`;
+    projectText = 'ПРОЕКТИ: —';
+  }
 
   const html = `
     <div class="summary-card"><h3>Лична информация</h3>
       <strong>Име:</strong> ${name}<br>
       <strong>Клас:</strong> ${grade}<br>
       <strong>Отбор:</strong> ${team}<br>
-      <strong>Планове след гимназията:</strong> ${future}
+      <strong>Планове след гимназията:</strong> ${future}<br>
+      <strong>Хобита:</strong> ${hobbies}
     </div>
     <div class="summary-card"><h3>Умения</h3>${skillLines}<br><em>Друго:</em> ${otherSkill}</div>
-    <div class="summary-card"><h3>Предпочитани категории</h3>${catNames}</div>
-    <div class="summary-card"><h3>Харесани проекти</h3>${projNames}</div>
-    <div class="summary-card"><h3>Работа в екип и приоритети</h3>
-      <strong>Стил на работа:</strong> ${teamstyle}<br>
-      <strong>Приоритет:</strong> ${priority}
+    <div class="summary-card"><h3>Избрани посоки</h3>${catNames}</div>
+    ${projectSection}
+    <div class="summary-card"><h3>Роля и предпочитания</h3>
+      <strong>Предпочитана роля:</strong> ${role}<br>
+      <strong>Приоритет:</strong> ${priority}<br>
+      <strong>AI инструменти:</strong> ${aiTools}
     </div>
-    <div class="summary-card"><h3>Собствена идея</h3>${ownIdea}</div>
     <div class="summary-card"><h3>Допълнително</h3>${extra}</div>
   `;
 
@@ -838,18 +760,19 @@ function buildSummary() {
 КЛАС: ${grade}
 ОТБОР: ${team}
 ПЛАНОВЕ: ${future}
+ХОБИТА: ${hobbies}
 
 УМЕНИЯ:
 ${skillText}
 Друго умение: ${otherSkill}
 
-ПРЕДПОЧИТАНИ КАТЕГОРИИ: ${catNames}
-ХАРЕСАНИ ПРОЕКТИ: ${projNames}
+ПОСОКИ: ${catNames}
+${projectText}
 
-СТИЛ НА РАБОТА В ЕКИП: ${teamstyle}
+ПРЕДПОЧИТАНА РОЛЯ: ${role}
 ПРИОРИТЕТ: ${priority}
+AI ИНСТРУМЕНТИ: ${aiTools}
 
-СОБСТВЕНА ИДЕЯ: ${ownIdea}
 ДОПЪЛНИТЕЛНО: ${extra}`;
 
   return { html, text };
@@ -860,7 +783,7 @@ function copyResults() {
   navigator.clipboard.writeText(s.text).then(() => {
     const btn = document.querySelector('.copy-btn');
     btn.textContent = 'Копирано ✓';
-    setTimeout(() => btn.textContent = 'Копирай отговорите си (за да ги изпратиш)', 2000);
+    setTimeout(() => btn.textContent = 'Копирай отговорите си', 2000);
   });
 }
 
