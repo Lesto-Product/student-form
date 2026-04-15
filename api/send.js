@@ -3,45 +3,34 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { subject, text, html } = req.body;
-
-  if (!text || !subject) {
-    return res.status(400).json({ error: "Missing required fields" });
+  const sheetUrl = process.env.GOOGLE_APP_URL;
+  if (!sheetUrl) {
+    return res.status(500).json({ error: "GOOGLE_APP_URL not configured" });
   }
-
-  const apiKey = process.env.BREVO_EMAIL_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: "BREVO_EMAIL_KEY not configured" });
-  }
-
-  const recipient = process.env.EMAIL_RECEIVING_ADDRESS || "k.krystev@lestoproduct.com";
 
   try {
-    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    const body = JSON.stringify(req.body);
+    const response = await fetch(sheetUrl, {
       method: "POST",
       headers: {
-        "api-key": apiKey,
         "Content-Type": "application/json",
+        "Content-Length": Buffer.byteLength(body).toString(),
       },
-      body: JSON.stringify({
-        sender: { name: "Анкета ППМГ 2026", email: "k.krystev@lestoproduct.com" },
-        to: [{ email: recipient }],
-        subject,
-        textContent: text,
-        htmlContent: html || undefined,
-      }),
+      body,
+      redirect: "follow",
     });
 
-    const data = await response.json();
+    const text = await response.text();
+    let data;
+    try { data = JSON.parse(text); } catch { data = { raw: text }; }
 
     if (!response.ok) {
-      console.error("Brevo error:", data);
-      return res.status(500).json({ error: "Brevo rejected email", detail: data });
+      return res.status(500).json({ error: "Google Sheets rejected request", detail: data });
     }
 
-    return res.status(200).json({ ok: true, id: data.messageId });
+    return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error("Email send failed:", err.message);
-    return res.status(500).json({ error: "Failed to send email", detail: err.message });
+    console.error("Sheet submission failed:", err.message);
+    return res.status(500).json({ error: "Failed to submit", detail: err.message });
   }
 };

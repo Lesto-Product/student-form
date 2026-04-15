@@ -659,17 +659,35 @@ async function finish() {
   statusEl.innerHTML = '<div class="email-banner sending">Изпращане на отговорите...</div>';
   descEl.textContent = 'Изпращаме отговорите ти...';
 
-  const studentName = document.getElementById('name').value || 'Неизвестен';
+  saveOwnIdeaState();
+  const sheetData = {
+    name: document.getElementById('name').value || '',
+    grade: document.getElementById('grade').value || '',
+    team: document.getElementById('team').value || '',
+    future: document.getElementById('future').value || '',
+    hobbies: document.getElementById('hobbies').value || '',
+    skills: skills.map(s => `${s.label}: ${skillRatings[s.id] || 0}/5`).join(', '),
+    otherSkill: document.getElementById('other-skill').value || '',
+    categories: [...selectedCats].map(id => categories.find(c => c.id === id)?.title || id).join(', '),
+    projects: [...selectedProjects].map(key => {
+      const [cat, i] = key.split('-');
+      return specificProjects.filter(p => p.cat === cat)[parseInt(i)]?.title || key;
+    }).join(', '),
+    ownIdea: ownIdeaState.idea,
+    ownProblem: ownIdeaState.problem,
+    ownTarget: ownIdeaState.target,
+    ownValidation: ownIdeaState.validation,
+    role: document.querySelector('input[name="role"]:checked')?.nextSibling?.textContent?.trim() || '',
+    priority: document.querySelector('input[name="priority"]:checked')?.nextSibling?.textContent?.trim() || '',
+    aiTools: document.getElementById('ai-tools').value || '',
+    extra: document.getElementById('extra').value || '',
+  };
 
   try {
     const res = await fetch('/api/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        subject: `Анкета ППМГ 2026 — ${studentName}`,
-        text: summary.text,
-        html: summary.html,
-      }),
+      body: JSON.stringify(sheetData),
     });
 
     if (res.ok) {
