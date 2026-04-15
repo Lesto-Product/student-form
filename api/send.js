@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -11,26 +11,12 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: Number(process.env.EMAIL_PORT),
-    secure: true,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
-
-  const recipient = process.env.EMAIL_RECEIVING_ADDRESS || process.env.EMAIL_USER;
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  const recipient = process.env.EMAIL_RECEIVING_ADDRESS || "k.krystev@lestoproduct.com";
 
   try {
-    await transporter.sendMail({
-      from: `"Анкета ППМГ 2026" <${process.env.EMAIL_USER}>`,
+    await resend.emails.send({
+      from: "Анкета ППМГ 2026 <onboarding@resend.dev>",
       to: recipient,
       subject,
       text,
@@ -39,7 +25,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error("Email send failed:", err.message, err.code);
+    console.error("Email send failed:", err.message);
     return res.status(500).json({ error: "Failed to send email", detail: err.message });
   }
 };

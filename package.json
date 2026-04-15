@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Lesto-Product/student-form#readme",
   "dependencies": {
-    "nodemailer": "^8.0.5"
+    "nodemailer": "^8.0.5",
+    "resend": "^6.11.0"
   }
 }
