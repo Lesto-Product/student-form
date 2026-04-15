@@ -19,6 +19,11 @@ module.exports = async function handler(req, res) {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
   const recipient = process.env.EMAIL_RECEIVING_ADDRESS || process.env.EMAIL_USER;
