@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Учебна програма — AI Пре-акселератор Враца</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23EC1C24'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='16' fill='white'>LP</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #EDEEF1; font-family: 'Mulish', sans-serif; color: #1A1D2B; }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #F4F5F7; }
+    ::-webkit-scrollbar-thumb { background: #d4626a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #c04a52; }
+    * { scrollbar-width: thin; scrollbar-color: #d4626a #F4F5F7; }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+      box-shadow: -1px 0 24px rgba(0,0,0,0.06), 1px 0 24px rgba(0,0,0,0.06);
+      padding: 3rem 3rem 4rem;
+    }
+
+    .brand {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: #2B3045;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .brand-accent { color: #EC1C24; }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 900;
+      color: #2B3045;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #6B7084;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    .divider {
+      height: 4px;
+      background: #EC1C24;
+      border-radius: 2px;
+      width: 48px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Track sections */
+    .track {
+      margin-bottom: 3rem;
+    }
+    .track-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+    }
+    .track-number {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #EC1C24;
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .track-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #2B3045;
+    }
+    .track-desc {
+      font-size: 15px;
+      color: #6B7084;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Module cards */
+    .module {
+      border: 1.5px solid #E8E9ED;
+      border-left: 4px solid #EC1C24;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .module h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #2B3045;
+      margin-bottom: 8px;
+    }
+    .module ul {
+      list-style: none;
+      padding: 0;
+    }
+    .module li {
+      font-size: 14px;
+      color: #1A1D2B;
+      line-height: 1.7;
+      padding-left: 18px;
+      position: relative;
+    }
+    .module li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #EC1C24;
+    }
+    .module li.sub {
+      color: #6B7084;
+      font-size: 13px;
+      padding-left: 34px;
+    }
+    .module li.sub::before {
+      left: 18px;
+      width: 5px; height: 5px;
+      background: #d0d1d6;
+    }
+
+    /* Tool tags */
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .tool-tag {
+      background: #F4F5F7;
+      border: 1.5px solid #E8E9ED;
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #2B3045;
+    }
+
+    /* Reference section */
+    .ref-section {
+      margin-bottom: 2.5rem;
+    }
+    .ref-section h2 {
+      font-size: 18px;
+      font-weight: 900;
+      color: #2B3045;
+      margin-bottom: 0.25rem;
+    }
+    .ref-link {
+      font-size: 13px;
+      color: #EC1C24;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+      text-decoration: none;
+    }
+    .ref-link:hover { text-decoration: underline; }
+
+    .ref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .ref-card {
+      border: 1.5px solid #E8E9ED;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      background: #F4F5F7;
+    }
+    .ref-card h4 {
+      font-size: 13px;
+      font-weight: 800;
+      color: #2B3045;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .ref-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .ref-card li {
+      font-size: 13px;
+      color: #6B7084;
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+    }
+    .ref-card li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #d0d1d6;
+    }
+
+    /* Steps list */
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: step;
+    }
+    .steps-list li {
+      font-size: 14px;
+      color: #1A1D2B;
+      line-height: 1.7;
+      padding-left: 32px;
+      position: relative;
+      margin-bottom: 4px;
+      counter-increment: step;
+    }
+    .steps-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0; top: 2px;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: #2B3045;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Resources */
+    .resource-box {
+      border: 1.5px solid #E8E9ED;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      background: #F4F5F7;
+      margin-top: 2rem;
+    }
+    .resource-box h3 {
+      font-size: 14px;
+      font-weight: 800;
+      color: #2B3045;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .resource-box a {
+      color: #EC1C24;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .resource-box a:hover { text-decoration: underline; }
+    .resource-box li {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 4px;
+      color: #1A1D2B;
+    }
+    .resource-box ul { padding-left: 18px; }
+
+    .section-divider {
+      border: none;
+      border-top: 2px solid #E8E9ED;
+      margin: 2.5rem 0;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: #EC1C24;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 2rem 1.25rem 3rem; }
+      .ref-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="brand"><span class="brand-accent">Lesto</span> &nbsp;×&nbsp; ППМГ Враца 2026</div>
+  <h1>AI Пре-акселератор Враца</h1>
+  <p class="subtitle">Учебна програма за ученици от ППМГ и ПТГ — използване на ИИ за бързо бизнес прототипиране, валидиране на идеи и изграждане на първи продукт.</p>
+  <div class="divider"></div>
+
+  <!-- TRACK 1 -->
+  <div class="track">
+    <div class="track-header">
+      <div class="track-number">1</div>
+      <div class="track-title">Предприемачество и генериране на идеи</div>
+    </div>
+    <p class="track-desc">Какво е да бъдеш предприемач, как се раждат идеите и как ги валидираме бързо с помощта на AI инструменти.</p>
+
+    <div class="module">
+      <h3>Мотивация и въведение</h3>
+      <ul>
+        <li>Какво е да бъдеш предприемач?</li>
+        <li>Мотивация и вдъхновение</li>
+        <li>Работа в екип и лидерство</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h3>Генериране и валидиране на идеи</h3>
+      <ul>
+        <li>Генериране на идеи и проучване на пазара</li>
+        <li>Валидиране на идеи и визия: AI като партньор (как да получаваме откровени отговори)</li>
+        <li>Разбиране на клиенти и потребители</li>
+        <li>Как да разберем нуждите на клиента</li>
+        <li>Personas — дефиниране на целеви потребители</li>
+        <li>Defining value proposition</li>
+      </ul>
+      <div class="tools">
+        <span class="tool-tag">icanpreneur</span>
+        <span class="tool-tag">Ideaproof</span>
+        <span class="tool-tag">Google Trends</span>
+        <span class="tool-tag">Perplexity</span>
+        <span class="tool-tag">F5bot</span>
+        <span class="tool-tag">Pemavor</span>
+      </div>
+    </div>
+
+    <div class="module">
+      <h3>Създаване на KPI и метрики</h3>
+      <ul>
+        <li>Създаване на KPI за проследяване на напредъка</li>
+        <li>SMART Goals — дефиниране на агресивни, измерими цели</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TRACK 2 -->
+  <div class="track">
+    <div class="track-header">
+      <div class="track-number">2</div>
+      <div class="track-title">Бързо прототипиране с AI</div>
+    </div>
+    <p class="track-desc">Какво е MVP, как се създава бързо с AI инструменти и как изглежда цикълът на разработка на продукт.</p>
+
+    <div class="module">
+      <h3>Какво е MVP?</h3>
+      <ul>
+        <li>How to build an MVP — минималният продукт, който доказва идеята</li>
+        <li>Product development cycle fundamentals</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h3>AI инструменти за бързи прототипи</h3>
+      <ul>
+        <li>Бързо създаване на работещи прототипи без програмиране</li>
+        <li>Дизайн и визуална комуникация с AI</li>
+      </ul>
+      <div class="tools">
+        <span class="tool-tag">Lovable</span>
+        <span class="tool-tag">Base44</span>
+        <span class="tool-tag">Figma Make</span>
+        <span class="tool-tag">Google AI Studio</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRACK 3 -->
+  <div class="track">
+    <div class="track-header">
+      <div class="track-number">3</div>
+      <div class="track-title">Маркетинг и Go-to-Market</div>
+    </div>
+    <p class="track-desc">Как продуктът стига до потребителите — от проучване на пазара, през маркетинг стратегия, до измерване на traction.</p>
+
+    <div class="module">
+      <h3>Проучване на пазара</h3>
+      <ul>
+        <li>Анализ на конкуренция и тенденции</li>
+        <li>High-Speed Discovery — интервюта с 20+ потенциални клиенти</li>
+      </ul>
+      <div class="tools">
+        <span class="tool-tag">icanpreneur</span>
+        <span class="tool-tag">Google Trends</span>
+        <span class="tool-tag">Pemavor</span>
+        <span class="tool-tag">Reddit Trends</span>
+        <span class="tool-tag">Perplexity</span>
+      </div>
+    </div>
+
+    <div class="module">
+      <h3>Go-to-Market стратегия</h3>
+      <ul>
+        <li>Lead Channels — избор на най-ефективната платформа</li>
+        <li>Low-Cost Pilots — малки експерименти за тестване на послания и CAC</li>
+        <li>Маркетинг стратегия и персони на клиенти</li>
+      </ul>
+      <div class="tools">
+        <span class="tool-tag">icanpreneur</span>
+        <span class="tool-tag">HubSpot Make My Persona</span>
+        <span class="tool-tag">M1 Persona Generator</span>
+      </div>
+    </div>
+
+    <div class="module">
+      <h3>Съдържание и Traction</h3>
+      <ul>
+        <li>Build a Content Engine — текст, изображения, видео</li>
+        <li>Origin story, mission and purpose — хората не купуват HOW, а WHY</li>
+        <li>Проследяване на traction с аналитични инструменти</li>
+      </ul>
+      <div class="tools">
+        <span class="tool-tag">Buffer</span>
+        <span class="tool-tag">Copy.ai</span>
+        <span class="tool-tag">Leonardo</span>
+        <span class="tool-tag">HeyGen</span>
+        <span class="tool-tag">Google Analytics</span>
+        <span class="tool-tag">FB Pixel</span>
+        <span class="tool-tag">Hotjar</span>
+        <span class="tool-tag">Mixpanel</span>
+      </div>
+    </div>
+
+    <div class="module">
+      <h3>BizDev (B2B)</h3>
+      <ul>
+        <li>Lead generation и изходящи кампании</li>
+        <li>Execute B2B email campaigns</li>
+      </ul>
+      <div class="tools">
+        <span class="tool-tag">Apollo</span>
+        <span class="tool-tag">Hunter</span>
+        <span class="tool-tag">Lusha</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRACK 4 -->
+  <div class="track">
+    <div class="track-header">
+      <div class="track-number">4</div>
+      <div class="track-title">Pitch Mastery и презентации</div>
+    </div>
+    <p class="track-desc">Как да представим идеята си убедително — език на тялото, паралингвистика и структура на pitch.</p>
+
+    <div class="module">
+      <h3>Подготовка и практика</h3>
+      <ul>
+        <li>Език на тялото и паралингвистика</li>
+        <li>Структура на pitch — 1 час подготовка</li>
+        <li>Prep the Growth Narrative — traction и метрики като "scalable machine" история</li>
+      </ul>
+    </div>
+
+    <div class="module">
+      <h3>Примери за вдъхновение</h3>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=8usz6i07qYs&t=1s" target="_blank" style="color:#EC1C24; font-weight:600;">Sam Jones — Gener8 (Dragon's Den)</a></li>
+        <li><a href="https://www.youtube.com/watch?v=BaUkuszb7dg" target="_blank" style="color:#EC1C24; font-weight:600;">Shark Tank — 10-year-old entrepreneur</a></li>
+        <li><a href="https://www.youtube.com/watch?v=_zUV9j_SJr8" target="_blank" style="color:#EC1C24; font-weight:600;">Steve Jobs — MacBook Air Keynote</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- GO-TO-MARKET 7 STEPS -->
+  <div class="eyebrow">Справочник</div>
+  <h2 style="font-size:20px; font-weight:900; color:#2B3045; margin-bottom:1rem;">7 стъпки за Go-to-Market</h2>
+
+  <div class="module">
+    <ol class="steps-list">
+      <li><strong>SMART Goals</strong> — дефинирай агресивни, измерими цели</li>
+      <li><strong>High-Speed Discovery</strong> — интервюирай 20+ потенциални клиенти и валидирай конкретните им болки</li>
+      <li><strong>Lead Channels</strong> — не се разпилявай; избери единствената най-ефективна платформа</li>
+      <li><strong>Low-Cost Pilots</strong> — малки експерименти за тестване на послания и изчисляване на начален CAC</li>
+      <li><strong>Content Engine</strong> — създай няколко ценни ресурса (whitepapers, демота, case studies), които доказват експертизата ти</li>
+      <li><strong>Growth Narrative</strong> — пакетирай traction и метрики в история за "scalable machine" за Demo Day</li>
+      <li><strong>Origin Story</strong> — мисия и цел. Хората не купуват твоето HOW — а твоето WHY</li>
+    </ol>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- REFERENCE PROGRAMS -->
+  <div class="eyebrow">Референтни програми</div>
+  <h2 style="font-size:20px; font-weight:900; color:#2B3045; margin-bottom:1.5rem;">Вдъхновение от водещи акселератори</h2>
+
+  <!-- ABLE -->
+  <div class="ref-section">
+    <h2>ABLE Activator</h2>
+    <a class="ref-link" href="https://activator.bg/program" target="_blank">activator.bg/program</a>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <h4>Module 1 — Leadership</h4>
+        <ul>
+          <li>Motivation & Inspiration</li>
+          <li>Introduction to Entrepreneurship</li>
+          <li>Teamwork & Leadership</li>
+          <li>Idea Generation & Market Research</li>
+          <li>Problem Validation</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Module 2 — Customer Path</h4>
+        <ul>
+          <li>Understanding Customer Needs</li>
+          <li>Defining Value Proposition</li>
+          <li>Building Unfair Advantage</li>
+          <li>Traction Channels</li>
+          <li>Revenue Streams & Cost Structure</li>
+          <li>Key Metrics & Customer Interviews</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Module 3 — Innovate</h4>
+        <ul>
+          <li>Analyzing Interview Results</li>
+          <li>Design Thinking</li>
+          <li>Building an MVP through Prototyping</li>
+          <li>Pitching Session #1</li>
+          <li>Roundtable Discussions</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Module 4 — Market Mastery</h4>
+        <ul>
+          <li>Go-to-Market Strategies</li>
+          <li>Startup Marketing</li>
+          <li>Sales Techniques</li>
+          <li>Pitching Session #2</li>
+          <li>Roundtable Discussions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Founders Institute -->
+  <div class="ref-section">
+    <h2>Founders Institute</h2>
+    <a class="ref-link" href="https://fi.co/core" target="_blank">fi.co/core</a>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <h4>Validate Track</h4>
+        <ul>
+          <li>Validated Business Idea & Vision</li>
+          <li>Initial Team-Building</li>
+          <li>Investor-Friendly Corporation</li>
+          <li>Formal Business Advisors</li>
+          <li>Clear Milestones & Launch Path</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Launch Track</h4>
+        <ul>
+          <li>Significant Progress on Team</li>
+          <li>Significant Progress on Product</li>
+          <li>First Growth Engines</li>
+          <li>Formal Advisory Board</li>
+          <li>Path to Investment</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Traction Track</h4>
+        <ul>
+          <li>Investment-Ready Pitch Deck</li>
+          <li>Diligence-Ready Business</li>
+          <li>Initial Product-Market Fit</li>
+          <li>Scalable Growth Engines</li>
+          <li>Start Fundraising</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>14-Week Curriculum</h4>
+        <ul>
+          <li>Accelerator Kickoff</li>
+          <li>Vision, Mission & Customer Dev</li>
+          <li>Revenue & Business Models</li>
+          <li>Pitch Mastery & Mentor Review</li>
+          <li>Legal, Equity & Go-to-Market</li>
+          <li>Product Dev, Growth & Funding</li>
+          <li>Graduation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Y Combinator -->
+  <div class="ref-section">
+    <h2>Y Combinator — Startup School</h2>
+    <a class="ref-link" href="https://www.startupschool.org/curriculum" target="_blank">startupschool.org/curriculum</a>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <h4>Module 1 — Deciding</h4>
+        <ul>
+          <li>Should you start a startup?</li>
+          <li>Why to not not start a startup?</li>
+          <li>Before the startup</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Module 2 — Ideas</h4>
+        <ul>
+          <li>How to get and evaluate startup ideas</li>
+          <li>All about pivoting</li>
+          <li>Where do great ideas come from?</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Module 3 — Team</h4>
+        <ul>
+          <li>All about co-founders</li>
+          <li>Mistakes that kill companies</li>
+          <li>How to split equity</li>
+          <li>How to work together</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Module 4 — MVP</h4>
+        <ul>
+          <li>How to talk to users</li>
+          <li>How to build an MVP</li>
+          <li>Product development cycle</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Module 5 — Launching</h4>
+        <ul>
+          <li>How to launch (again and again)</li>
+          <li>How to get first customers</li>
+          <li>Do things that don't scale</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4>Module 6 & 7 — Growth</h4>
+        <ul>
+          <li>KPIs and time prioritization</li>
+          <li>Business models and pricing</li>
+          <li>Growth for startups</li>
+          <li>Fundraising & applying to YC</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resources -->
+  <div class="resource-box">
+    <h3>Полезни ресурси</h3>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=8usz6i07qYs&t=1s" target="_blank">Sam Jones — Gener8 (Dragon's Den)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=BaUkuszb7dg" target="_blank">Shark Tank — 10-year-old entrepreneur</a></li>
+      <li><a href="https://www.youtube.com/watch?v=_zUV9j_SJr8" target="_blank">Steve Jobs — MacBook Air Keynote</a></li>
+      <li>"Добър софтуер ≠ бизнес успех. Какво може да се обърка?" — Светозар Георгиев / DEV.BG All In One 2019</li>
+      <li><strong>The Mom Test</strong> — книга за валидиране на идеи чрез разговори с клиенти</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
